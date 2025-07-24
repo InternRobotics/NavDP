@@ -37,7 +37,7 @@
 
 ## 🔥 News
 - We release the benchmark and baselines implementations [here](https://github.com/InternRobotics/NavDP/tree/navdp_benchmark)!
-- We release a high-quality VLN simulation dataset [here](https://huggingface.co/datasets/InternRobotics/InternData-N1)!
+- We release a high-quality VLN simulation dataset - [InternNav-N1](https://huggingface.co/datasets/InternRobotics/InternData-N1)!
 
 ## 🏡 About
 Learning navigation in dynamic open-world environments is an important yet challenging skill for robots. Most previous methods rely on precise localization and mapping or learn from expensive real-world demonstrations. In this paper, we propose a novel diffusion policy network that enables zero-shot sim-to-real transfer and can generalize across different robot platform and diverse scenes. Besides, we build a highly efficient navigation data generation pipeline that can support both synthetic scene assets and 3D Gaussian-Splatting assets.
