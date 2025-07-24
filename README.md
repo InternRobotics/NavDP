@@ -31,6 +31,9 @@
 
 </div>
 
+## 🔥 News
+- We release the benchmark and baselines implementations [here](https://github.com/InternRobotics/NavDP/tree/navdp_benchmark)!
+
 ## 🏡 About
 Learning navigation in dynamic open-world environments is an important yet challenging skill for robots. Most previous methods rely on precise localization and mapping or learn from expensive real-world demonstrations. In this paper, we propose a novel diffusion policy network that enables zero-shot sim-to-real transfer and can generalize across different robot platform and diverse scenes. Besides, we build a highly efficient navigation data generation pipeline that can support both synthetic scene assets and 3D Gaussian-Splatting assets.
 <div style="text-align: center;">
@@ -70,8 +73,9 @@ python navdp_client.py --port ${YOUR_PORT}  -rgb_pkl ${SAVED_RGB_PKL} --depth_pk
 ## 📝 TODO List
 - \[x\] Release the arXiv paper in May, 2025.
 - \[x\] Release the scripts and checkpoint for deployment.
+- \[x\] Release the evaluation [benchmark](https://github.com/InternRobotics/NavDP/tree/navdp_benchmark).
 - \[ \] Release the large-scale navigation dataset.
-- \[ \] Release the evaluation benchmark.
+
 
 ## ✉️ Contact
 For any questions, please feel free to email wz_cai@seu.edu.cn. We will respond to it as soon as possible.
