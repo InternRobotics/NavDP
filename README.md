@@ -28,11 +28,16 @@
 )](https://arxiv.org/abs/2505.08712)
 [![Video](https://img.shields.io/badge/Video-%23c97937?style=flat&logoColor=%23FA7F6F
 )](https://www.youtube.com/watch?v=vfUnxD9WfoA)
+[![Benchmark](https://img.shields.io/badge/Benchmark-8A2BE2?style=flat
+)](https://github.com/InternRobotics/NavDP/tree/navdp_benchmark/)
+[![Data](https://img.shields.io/badge/Data-548B54?style=flat
+)](https://huggingface.co/datasets/InternRobotics/InternData-N1/)
 
 </div>
 
 ## 🔥 News
 - We release the benchmark and baselines implementations [here](https://github.com/InternRobotics/NavDP/tree/navdp_benchmark)!
+- We release a high-quality VLN simulation dataset [here](https://huggingface.co/datasets/InternRobotics/InternData-N1)!
 
 ## 🏡 About
 Learning navigation in dynamic open-world environments is an important yet challenging skill for robots. Most previous methods rely on precise localization and mapping or learn from expensive real-world demonstrations. In this paper, we propose a novel diffusion policy network that enables zero-shot sim-to-real transfer and can generalize across different robot platform and diverse scenes. Besides, we build a highly efficient navigation data generation pipeline that can support both synthetic scene assets and 3D Gaussian-Splatting assets.
