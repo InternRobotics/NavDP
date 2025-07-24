@@ -1,0 +1,10 @@
+*.ply
+__pycache__
+*.pth
+*.ckpt
+*.pt
+*.mp4
+*.jpg
+asset_scenes/Materials/*
+asset_scenes/SkyTexture/*
+asset_scenes/embodiedscan/*
