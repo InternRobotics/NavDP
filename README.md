@@ -84,9 +84,10 @@ asset_scenes/
 | Materials  | [Link]() | - |
 | Cluttered-Easy | [Link](./asset_scenes/cluttered_easy/) | [Episodes](./asset_scenes/cluttered_easy/) |
 | Cluttered-Hard | [Link](./asset_scenes/cluttered_hard/) | [Episodes](./asset_scenes/cluttered_hard/) |
-| InternUtopia-Home |  [Link]() |  [Episodes](./asset_scenes/grutopia_home/) |
-| InternUtopia-Commercial | [Link]() | [Episodes](./asset_scenes/grutopia_commercial/) |
+| Internscenes-Home |  [Link]() |  [Episodes](./asset_scenes/grutopia_home/) |
+| Internscenes-Commercial | [Link]() | [Episodes](./asset_scenes/grutopia_commercial/) |
 
+**Note: The textures and dataset are still waiting for uploading to HuggingFace**
 ## 🔧 Installation of Benchmark ##
 Our framework is based on IsaacSim 4.2.0 and IsaacLab 1.2.0, you can follow the instructions to configure the conda environment.
 ```

@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--port",type=int,default=8888)
-parser.add_argument("--checkpoint",type=str,default="./checkpoints/cross-waic-pretrain-20.ckpt")
+parser.add_argument("--checkpoint",type=str,default="./checkpoints/navdp.ckpt")
 args = parser.parse_known_args()[0]
 
 app = Flask(__name__)

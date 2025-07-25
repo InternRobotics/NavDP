@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--port",type=int,default=8888)
 parser.add_argument("--config",type=str,default="./configs/viplanner.yaml")
 parser.add_argument("--checkpoint",type=str,default="./checkpoints/viplanner.pt")
-parser.add_argument("--m2f_config",type=str,default="/home/PJLAB/caiwenzhe/miniconda3/envs/habitat/lib/python3.9/site-packages/mmdet/.mim/configs/mask2former/mask2former_r50_8xb2-lsj-50e_coco-panoptic.py")
+parser.add_argument("--m2f_config",type=str,default="~/miniconda3/envs/habitat/lib/python3.9/site-packages/mmdet/.mim/configs/mask2former/mask2former_r50_8xb2-lsj-50e_coco-panoptic.py")
 parser.add_argument("--m2f_checkpoint",type=str,default="./checkpoints/mask2former_r50_8xb2-lsj-50e_coco-panoptic_20230118_125535-54df384a.pth")
 args = parser.parse_known_args()[0]
 

@@ -126,7 +126,7 @@ class NavDP_PixelGoal_Backbone(nn.Module):
         model_configs = {'vits': {'encoder': 'vits', 'features': 64, 'out_channels': [48, 96, 192, 384]}}
         self.pixelgoal_encoder = DepthAnythingV2(**model_configs['vits'])
         self.pixelgoal_encoder = self.pixelgoal_encoder.pretrained.float()
-        self.pixelgoal_encoder.patch_embed.proj = nn.Conv2d(in_channels=7,
+        self.pixelgoal_encoder.patch_embed.proj = nn.Conv2d(in_channels=4,
                                                             out_channels = self.pixelgoal_encoder.patch_embed.proj.out_channels,
                                                             kernel_size = self.pixelgoal_encoder.patch_embed.proj.kernel_size,
                                                             stride = self.pixelgoal_encoder.patch_embed.proj.stride,
