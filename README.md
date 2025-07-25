@@ -197,11 +197,11 @@ Then, you can use 'w','a','s','d' on the keyboard to control the linear and angu
 ## 📊 Running Evaluation
 With a running server, it is simple to start the evaluation as:
 ```
-# if the running server support no-goal task
+# if the running server support no-goal task, Please Parse the Absolute Path of the ASSET_SCENE
 python eval_nogoal_wheeled.py --port {PORT} --scene_dir {ASSET_SCENE} --scene_index {INDEX}
-# if the running server support point-goal task
+# if the running server support point-goal task, Please Parse the Absolute Path of the ASSET_SCENE
 python eval_pointgoal_wheeled.py --port {PORT} --scene_dir {ASSET_SCENE} --scene_index {INDEX}
-# if the running server support image-goal task
+# if the running server support image-goal task, Please Parse the Absolute Path of the ASSET_SCENE
 python eval_imagegoal_wheeled.py --port {PORT} --scene_dir {ASSET_SCENE} --scene_index {INDEX}
 ```
 Please parse the port to match the server port, and the scene asset as well as the scene index to decide the evaluate scenario.
