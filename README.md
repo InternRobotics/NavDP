@@ -61,7 +61,7 @@ asset_scenes/
 │       ├── imagegoal_start_goal_pairs.npy
 │       └── pointgoal_start_goal_pairs.npy
 │   ├── ...
-├── grutopia_commercial/
+├── internscenes_commercial/
 │   └── MV4AFHQKTKJZ2AABAAAAADQ8_usd/
 │       ├── models/
 │       ├── Materials/
@@ -69,7 +69,7 @@ asset_scenes/
 │       ├── start_result_navigation.usd
 │       └── pointgoal_start_goal_pairs.npy
 │   ├── ...
-├── grutopia_home/
+├── internscene_home/
 │   └── MV4AFHQKTKJZ2AABAAAAADQ8_usd/
 │       ├── models/
 │       ├── Materials/
@@ -84,8 +84,8 @@ asset_scenes/
 | Materials  | [Link]() | - |
 | Cluttered-Easy | [Link](./asset_scenes/cluttered_easy/) | [Episodes](./asset_scenes/cluttered_easy/) |
 | Cluttered-Hard | [Link](./asset_scenes/cluttered_hard/) | [Episodes](./asset_scenes/cluttered_hard/) |
-| Internscenes-Home |  [Link]() |  [Episodes](./asset_scenes/grutopia_home/) |
-| Internscenes-Commercial | [Link]() | [Episodes](./asset_scenes/grutopia_commercial/) |
+| InternScenes-Home |  [Link]() |  [Episodes](./asset_scenes/grutopia_home/) |
+| InternScenes-Commercial | [Link]() | [Episodes](./asset_scenes/grutopia_commercial/) |
 
 **Note: The textures and dataset are still waiting for uploading to HuggingFace**
 ## 🔧 Installation of Benchmark ##
@@ -115,7 +115,7 @@ git checkout tags/v1.2.0
 After preparing for the dependencies, please clone our project to get started.
 
 ```
-git clone https://github.com/OpenRobotLab/NavDP.git
+git clone https://github.com/InternRobotics/NavDP.git
 cd NavDP
 git checkout navdp_benchmark
 pip install -r requirements.txt
@@ -124,7 +124,7 @@ pip install -r requirements.txt
 ## ⚙️ Installation of Baseline Library ##
 We collect the checkpoints for other navigation system-1 method from the corresponding respitory and organize their code to support the HTTP api calling for our benchmark. The links of paper, github codes as well as the pre-trained checkpoints are listed in the table below. Some of the baselines requires additional dependencies, and we provide the installation details below.
 ```
-git clone https://github.com/OpenRobotLab/NavDP.git
+git clone https://github.com/InternRobotics/NavDP.git
 cd NavDP
 git checkout navdp_baseline
 # you can rename the branch directory as nav_system1_baseline
