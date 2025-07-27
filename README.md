@@ -139,7 +139,7 @@ mv ../NavDP ../nav_system1_baseline
 | GNM | [Arxiv](https://arxiv.org/abs/2210.03370)   | [GitHub](https://github.com/robodhruv/visualnav-transformer) | [Checkpoint](https://drive.google.com/drive/folders/1a9yWR2iooXFAqjQHetz263--4_2FFggg?usp=sharing) | ImageNav, NoGoal |
 | ViNT | [Arxiv](https://arxiv.org/abs/2306.14846)   | [GitHub](https://github.com/robodhruv/visualnav-transformer) | [Checkpoint](https://drive.google.com/drive/folders/1a9yWR2iooXFAqjQHetz263--4_2FFggg?usp=sharing)| ImageNav, NoGoal |
 | NoMad | [Arxiv](https://arxiv.org/abs/2310.07896)   | [GitHub](https://github.com/robodhruv/visualnav-transformer) | [Checkpoint](https://drive.google.com/drive/folders/1a9yWR2iooXFAqjQHetz263--4_2FFggg?usp=sharing) | ImageNav, NoGoal |
-| NavDP | [Arxiv](https://arxiv.org/abs/2505.08712)  | [GitHub](https://github.com/OpenRobotLab/NavDP) | [Checkpoint](https://drive.google.com/file/d/10cCFlSN7xd_jKVOP_VV53ItJx47a9jqq/view?usp=drive_link) | PointNav, ImageNav, NoGoal |
+| NavDP | [Arxiv](https://arxiv.org/abs/2505.08712)  | [GitHub](https://github.com/OpenRobotLab/NavDP) | [Checkpoint](https://docs.google.com/forms/d/e/1FAIpQLSdl3RvajO5AohwWZL5C0yM-gkSqrNaLGp1OzN9oF24oNLfikw/viewform?usp=dialog) | PointNav, ImageNav, NoGoal |
 
 ### DD-PPO
 To verify the performance of DD-PPO with continuous action space, we interpolate the predicted discrete actions {Stop, Forward, TurnLeft, TurnRight} into a trajectory. To play with the DD-PPO in our benchmark,
