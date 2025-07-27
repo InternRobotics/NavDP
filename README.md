@@ -226,7 +226,8 @@ If you find our work helpful, please cite:
 ```
 
 ## 👏 Acknowledgement
-- [InternUtopia](https://github.com/OpenRobotLab/GRUtopia) (Previously `GRUtopia`): The closed-loop evaluation and GRScenes-100 data in this framework relies on the InternUtopia framework.
+- [InternUtopia](https://github.com/InternRobotics/InternUtopia) (Previously `GRUtopia`): The closed-loop evaluation and GRScenes-100 data in this framework relies on the InternUtopia framework.
+- [InternNav](https://github.com/InternRobotics/InternNav): All-in-one open-source toolbox for embodied navigation based on PyTorch, Habitat and Isaac Sim.
 - [Diffusion Policy](https://github.com/real-stanford/diffusion_policy): Diffusion policy implementation.
 - [ViPlanner](https://github.com/leggedrobotics/viplanner): ViPlanner implementation.
 - [iPlanner](https://github.com/leggedrobotics/iPlanner): iPlanner implementation.
