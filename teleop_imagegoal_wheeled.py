@@ -7,6 +7,8 @@ parser.add_argument(
 parser.add_argument(
     "--scene_index", type=int, default=0)
 parser.add_argument(
+    "--scene_scale", type=float, default=1.0)
+parser.add_argument(
     "--stop_threshold", type=float, default=-2.0)
 parser.add_argument(
     "--num_episodes", type=int, default=100)
@@ -39,7 +41,7 @@ from omni.isaac.lab.managers import SceneEntityCfg
 from omni.isaac.lab_tasks.utils.wrappers.rsl_rl import RslRlVecEnvWrapper
 from wheeled_robots.controllers.differential_controller import DifferentialController
 
-from utils_tasks.basic_utils import PlanningInput, PlanningOutput,find_usd_path
+from utils_tasks.basic_utils import PlanningInput, PlanningOutput,find_usd_path,adjust_usd_scale
 from utils_tasks.client_utils import navigator_reset,imagegoal_step
 from config_robots import *
 from config_scenes import *
@@ -141,12 +143,13 @@ def main():
     env_config.actions = DingoActionsCfg()
     env_config.scene = scene_config
     env_config.events.reset_pose.params = {"init_point_path": init_path,
-                                           'height_offset': 0.25,
+                                           'height_offset': 0.1,
                                            'camera_offset': 0.2,
                                            'robot_visible': False,
-                                           'light_enabled': True}
+                                           'light_enabled': False}
     env = ManagerBasedRLEnv(env_config)
     env = RslRlVecEnvWrapper(env)
+    adjust_usd_scale(scale=args_cli.scene_scale)
     obs, infos = env.reset()
     camera_intrinsic = env.unwrapped.scene.sensors['camera_sensor'].data.intrinsic_matrices[0]
     controller = DifferentialController(name="simple_control", wheel_radius=DINGO_WHEEL_RADIUS, wheel_base=DINGO_WHEEL_BASE)

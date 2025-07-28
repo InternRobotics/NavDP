@@ -11,6 +11,8 @@ parser.add_argument(
 parser.add_argument(
     "--scene_index", type=int, default=8)
 parser.add_argument(
+    "--scene_scale", type=float, default=1.0)
+parser.add_argument(
     "--stop_threshold", type=float, default=-3.0)
 parser.add_argument(
     "--num_envs", type=int, default=1)
@@ -43,7 +45,7 @@ import torchvision.transforms as F
 import time
 import threading
 
-from utils_tasks.basic_utils import PlanningInput, PlanningOutput, find_usd_path, write_metrics, draw_box_with_text
+from utils_tasks.basic_utils import PlanningInput, PlanningOutput, find_usd_path, write_metrics, draw_box_with_text,adjust_usd_scale
 from config_robots import *
 from config_scenes import *
 from config_tasks import *
@@ -148,9 +150,10 @@ env_config.scene = scene_config
 env_config.events.reset_pose.params = {"init_point_path":init_path, 
                                        'height_offset':0.1,
                                        'robot_visible': False,
-                                       'light_enabled': True}
+                                       'light_enabled': False}
 env = ManagerBasedRLEnv(env_config)
 env = RslRlVecEnvWrapper(env)
+adjust_usd_scale(scale=args_cli.scene_scale)
 _,infos = env.reset()
 camera_intrinsic = env.unwrapped.scene.sensors['camera_sensor'].data.intrinsic_matrices[0]
 

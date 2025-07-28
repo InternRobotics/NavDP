@@ -58,3 +58,30 @@ def cpu_pointcloud_from_array(points,colors):
     pointcloud.points = o3d.utility.Vector3dVector(points)
     pointcloud.colors = o3d.utility.Vector3dVector(colors)
     return pointcloud
+
+def adjust_usd_scale(prim_path="/World/Scene/terrain",scale=1.0):
+    import omni
+    from pxr import UsdGeom, Usd, Sdf, Gf
+    stage = omni.usd.get_context().get_stage()
+    scene_prim = stage.GetPrimAtPath(prim_path)
+    if scene_prim.IsValid():
+        print(f"Directly setting scale for prim: <{scene_prim.GetPath()}>")
+        # 1. Get or create the scale attribute and set its value.
+        scale_attr = scene_prim.GetAttribute("xformOp:scale")
+        if not scale_attr:
+            scale_attr = scene_prim.CreateAttribute("xformOp:scale", Sdf.ValueTypeNames.Double3, False)
+        scale_attr.Set(Gf.Vec3d(0.01, 0.01, 0.01))
+
+        # 2. Ensure 'xformOp:scale' is in the transformation order.
+        order_attr = scene_prim.GetAttribute("xformOpOrder")
+        if not order_attr.HasValue():
+            # If order doesn't exist, create it with a default that includes scale.
+            scene_prim.CreateAttribute("xformOpOrder", Sdf.ValueTypeNames.TokenArray, False).Set(["xformOp:translate", "xformOp:orient", "xformOp:scale"])
+        else:
+            order = list(order_attr.Get())
+            if "xformOp:scale" not in order:
+                order.append("xformOp:scale")
+                order_attr.Set(order)
+        print(f"Successfully set scale for prim <{scene_prim.GetPath()}>")
+    else:
+        print("Warning: Could not find prim at /World/Scene to apply scale.")
