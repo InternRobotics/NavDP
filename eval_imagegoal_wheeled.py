@@ -158,6 +158,12 @@ env = ManagerBasedRLEnv(env_config)
 env = RslRlVecEnvWrapper(env)
 adjust_usd_scale(scale=args_cli.scene_scale)
 _,infos = env.reset()
+# warm-up
+PREHEAT_STEPS = 10
+for _ in range(PREHEAT_STEPS):
+    action = torch.zeros((args_cli.num_envs, 2), device="cuda:0")
+    obs, rewards, dones, infos = env.step(action)
+    
 camera_intrinsic = env.unwrapped.scene.sensors['camera_sensor'].data.intrinsic_matrices[0]
 
 planning_thread_obj = threading.Thread(target=planning_thread, args=(env, camera_intrinsic))
