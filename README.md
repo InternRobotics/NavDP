@@ -39,9 +39,9 @@
 
 # 🔥 News
 - We release the [InternNav](https://github.com/InternRobotics/InternNav) - an all-in-one open-source toolbox for embodied naivgation.
-- We open source a comprehensive navigation system-1 benchmark, check [here]() for more details!
+- We open source a comprehensive navigation system-1 benchmark, check [here](#-internvla-n1-system-1-benchmark) for more details!
 - We release a high-quality Vision-Language-Navigation (VLN) dataset - [InternData-N1](https://huggingface.co/datasets/InternRobotics/InternData-N1)!
-- We release a new NavDP checkpoint - [InternVLA-N1-S1]().
+- We release a new NavDP checkpoint - [InternVLA-N1-S1](#-internvla-n1-system-1-model).
 
 # 🏡 Introduction
 Navigation Diffusion Policy (NavDP) is an end-to-end mapless navigation model 
@@ -114,7 +114,7 @@ Our benchmark supports multiple navigation tasks, including no-goal exploration,
 - [👏 Acknowledgements](#-acknowledgements)
 
 ### 🌆 Prepare Scene Asset ##
-Please download the scene asset from [InternData-N1]() at HuggingFace.
+Please download the scene asset from [InternScene-N1](https://huggingface.co/datasets/InternRobotics/Scene-N1/tree/main) at HuggingFace.
 The episodes information can be directly accessed in this repo. After downloading, please organize the structure as follows:
 ```bash
 asset_scenes/
@@ -161,17 +161,17 @@ asset_scenes/
 
 | Category | Download Asset | Episodes |
 |------|------|-------|
-| SkyTexture | [Link]() | - |
-| Materials  | [Link]() | - |
-| Cluttered-Easy | [Link](./asset_scenes/cluttered_easy/) | [Episodes](./asset_scenes/cluttered_easy/) |
-| Cluttered-Hard | [Link](./asset_scenes/cluttered_hard/) | [Episodes](./asset_scenes/cluttered_hard/) |
-| InternScenes-Home |  [Link]() |  [Episodes](./asset_scenes/grutopia_home/) |
-| InternScenes-Commercial | [Link]() | [Episodes](./asset_scenes/grutopia_commercial/) |
+| SkyTexture | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | - |
+| Materials  | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | - |
+| Cluttered-Easy | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | [Episodes](./asset_scenes/cluttered_easy/) |
+| Cluttered-Hard | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | [Episodes](./asset_scenes/cluttered_hard/) |
+| InternScenes-Home |  [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) |  [Episodes](./asset_scenes/internscenes_home/) |
+| InternScenes-Commercial | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | [Episodes](./asset_scenes/internscenes_commercial/) |
 
 **Note: The textures and dataset are still waiting for uploading to HuggingFace**
 ### 🔧 Installation of Benchmark ##
 Our framework is based on IsaacSim 4.2.0 and IsaacLab 1.2.0, you can follow the instructions to configure the conda environment.
-```
+```bash
 # create the environment
 conda create -n isaaclab python=3.10
 conda activate isaaclab
@@ -195,7 +195,7 @@ git checkout tags/v1.2.0
 ```
 After preparing for the dependencies, please clone our project to get started.
 
-```
+```bash
 git clone https://github.com/InternRobotics/NavDP.git
 cd NavDP
 git checkout navdp_benchmark
@@ -204,7 +204,7 @@ pip install -r requirements.txt
 
 ### ⚙️ Installation of Baseline Library ##
 We collect the checkpoints for other navigation system-1 method from the corresponding respitory and organize their code to support the HTTP api calling for our benchmark. The links of paper, github codes as well as the pre-trained checkpoints are listed in the table below. Some of the baselines requires additional dependencies, and we provide the installation details below.
-```
+```bash
 git clone https://github.com/InternRobotics/NavDP.git
 cd NavDP
 git checkout navdp_baseline
@@ -240,7 +240,7 @@ No addition dependencies are required if you have configured the environment for
 
 #### ViPlanner
 For Viplanner, you need to install the mmcv and mmdet for Mask2Former. We recommand to create a new environment with torch 2.0.1 as backend.
-```
+```bash
 pip install torch==2.0.1+cu118 --extra-index-url https://download.pytorch.org/whl/cu118
 pip install torchvision==0.15.2+cu118 --extra-index-url https://download.pytorch.org/whl/cu118
 pip install mmcv==2.0.0 -f https://download.openmmlab.com/mmcv/dist/cu118/torch2.0/index.html
@@ -250,7 +250,7 @@ pip install git+https://github.com/cocodataset/panopticapi.git
 
 #### GNM, ViNT and NoMad
 To play with GNM, ViNT and NoMad, you need to install the following dependencies:
-```
+```bash
 pip install efficientnet_pytorch==0.7.1
 pip install diffusers==0.33.1
 pip install git+https://github.com/real-stanford/diffusion_policy.git
@@ -258,7 +258,7 @@ pip install git+https://github.com/real-stanford/diffusion_policy.git
 
 ### 💻 Running Basline as Server
 To install the dependencies for different baseline method, please refer to [here](). For each pre-built baseline methods, each contains a server.py file, just simply run server python script with parsing the server port as well as the checkpoint path. You can download the checkpoints from the [baseline library table](). Taking NavDP as an example:
-```
+```bash
 cd nav_system1_baseline/navdp/
 python navdp_server.py --port 8888 --checkpoint ./checkpoints/navdp_checkpoint.ckpt
 ```
@@ -266,7 +266,7 @@ Then, the server will run at backend waiting for RGB-D observations and generate
 
 ### 🕹️ Running Teleoperation
 For quickstart or debug with your novel navigation approach, we provide a teleoperation script that the robot move according to your teleoperation command while outputs the predicted trajectory for visualization. With a running server, the teleoperation code can be directly started with one-line command:
-```
+```bash
 # if the running server support no-goal task
 python teleop_nogoal_wheeled.py
 # if the running server support point-goal task
@@ -278,7 +278,7 @@ Then, you can use 'w','a','s','d' on the keyboard to control the linear and angu
 
 ### 📊 Running Evaluation
 With a running server, it is simple to start the evaluation as:
-```
+```bash
 # if the running server support no-goal task, Please Parse the Absolute Path of the ASSET_SCENE
 python eval_nogoal_wheeled.py --port {PORT} --scene_dir {ASSET_SCENE} --scene_index {INDEX}
 # if the running server support point-goal task, Please Parse the Absolute Path of the ASSET_SCENE
