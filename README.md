@@ -74,8 +74,13 @@ Run the following line to start navdp server:
 ```bash
 python navdp_server.py --port ${YOUR_PORT} --checkpoint ${SAVE_PTH_PATH}
 ```
-Then, follow the subsequent tutorial to build the environment for IsaacSim and start the evaluation in simulation.
-
+Then, follow the subsequent tutorial to build the environment for IsaacSim and start the evaluation in simulation. By running with our benchmark, you should be able to replicate the navigation examples below:
+#### NoGoal Exploration
+![scenes](./asset_images/demo_nogoal.gif)
+#### PointGoal Navigation
+![scenes](./asset_images/demo_pointgoal.gif)
+#### ImageGoal Navigation
+![scenes](./asset_images/demo_imagegoal.gif)
 # 🎢 InternVLA-N1 System-1 Benchmark 
 
 ### 🏠 Overview ##
