@@ -1,4 +1,4 @@
-# NavDP System-1 Benchmark #
+# InternNav System-1 Benchmark #
 ## 🏠 Introduction ##
 This repository is a high-fidelity platform for benchmarking the visual navigation methods based on [IsaacSim](https://developer.nvidia.com/isaac/sim) and [IsaacLab](https://isaac-sim.github.io/IsaacLab/main/index.html). With realistic physics simulation and realistic scene assets, this repository aims to build an benchmark that can minimizing the sim-to-real gap in navigation system-1 evaluation.
 
