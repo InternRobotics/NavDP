@@ -70,7 +70,7 @@ def adjust_usd_scale(prim_path="/World/Scene/terrain",scale=1.0):
         scale_attr = scene_prim.GetAttribute("xformOp:scale")
         if not scale_attr:
             scale_attr = scene_prim.CreateAttribute("xformOp:scale", Sdf.ValueTypeNames.Double3, False)
-        scale_attr.Set(Gf.Vec3d(0.01, 0.01, 0.01))
+        scale_attr.Set(Gf.Vec3d(scale, scale, scale))
 
         # 2. Ensure 'xformOp:scale' is in the transformation order.
         order_attr = scene_prim.GetAttribute("xformOpOrder")
