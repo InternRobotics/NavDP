@@ -47,9 +47,8 @@
 Navigation Diffusion Policy (NavDP) is an end-to-end mapless navigation model 
 that can achieves cross-embodiment generalization without any real-world robot data. By building a highly efficient simulation data generation pipeline as well as the superior model design, NavDP achieves real-time path-planning and obstacle avoidance across various navigation tasks, including nogoal exploration, pointgoal navigation, imagegoal navigation.
 <div style="text-align: center;">
-    <img src="asset_images/teasor_method.png" alt="Dialogue_Teaser" width=90% >
+    <img src="asset_images/teasor_method.png" alt="Dialogue_Teaser" width=100% >
 </div>
-
 
 # 💻 InternVLA-N1 System-1 Model
 Please fill this [form](https://docs.google.com/forms/d/e/1FAIpQLSdl3RvajO5AohwWZL5C0yM-gkSqrNaLGp1OzN9oF24oNLfikw/viewform?usp=dialog) to access the link to download the latest model checkpoint.
