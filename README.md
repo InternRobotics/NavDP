@@ -30,7 +30,7 @@
 [![Video](https://img.shields.io/badge/Video-%23c97937?style=flat&logoColor=%23FA7F6F
 )](https://www.youtube.com/watch?v=vfUnxD9WfoA)
 [![Benchmark](https://img.shields.io/badge/Benchmark-8A2BE2?style=flat
-)](https://github.com/InternRobotics/NavDP/tree/navdp_benchmark/)
+)](#-internvla-n1-system-1-benchmark)
 [![Dataset](https://img.shields.io/badge/Dataset-548B54?style=flat
 )](https://huggingface.co/datasets/InternRobotics/InternData-N1/)
 [![GitHub star chart](https://img.shields.io/github/stars/InternRobotics/NavDP?style=square)](https://github.com/InternRobotics/NavDP)
