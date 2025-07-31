@@ -1,8 +1,4 @@
-import requests
-import io
-import json
 import argparse
-import cv2
 from omni.isaac.lab.app import AppLauncher
 
 parser = argparse.ArgumentParser(description="A script to run a car control simulation")
@@ -27,7 +23,6 @@ app_launcher = AppLauncher(headless=True, enable_cameras=True)
 simulation_app = app_launcher.app
 
 import omni
-import cv2
 import carb
 import numpy as np
 import imageio
@@ -47,9 +42,9 @@ import time
 import threading
 
 from utils_tasks.basic_utils import PlanningInput, PlanningOutput, find_usd_path, write_metrics, draw_box_with_text,adjust_usd_scale
-from config_robots import *
-from config_scenes import *
-from config_tasks import *
+from configs.robots import *
+from configs.scenes import *
+from configs.tasks import *
 from utils_tasks.client_utils import navigator_reset,nogoal_step
 from utils_tasks.visualization_utils import VisualizationManager
 from utils_tasks.tracking_utils import MPC_Controller

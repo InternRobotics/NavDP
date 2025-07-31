@@ -1,6 +1,6 @@
 import argparse
 from omni.isaac.lab.app import AppLauncher
-from isaacsim import SimulationApp
+
 parser = argparse.ArgumentParser(description="A script to run a car control simulation")
 parser.add_argument(
     "--scene_dir", type=str, default="./asset_scenes/cluttered_easy")
@@ -43,9 +43,9 @@ from wheeled_robots.controllers.differential_controller import DifferentialContr
 
 from utils_tasks.basic_utils import PlanningInput, PlanningOutput,find_usd_path,adjust_usd_scale
 from utils_tasks.client_utils import navigator_reset,imagegoal_step
-from config_robots import *
-from config_scenes import *
-from config_tasks import *
+from configs.robots import *
+from configs.scenes import *
+from configs.tasks import *
 from utils_tasks.visualization_utils import VisualizationManager
 
 # Global shared states

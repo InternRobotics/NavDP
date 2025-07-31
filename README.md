@@ -47,7 +47,7 @@
 Navigation Diffusion Policy (NavDP) is an end-to-end mapless navigation model 
 that can achieves cross-embodiment generalization without any real-world robot data. By building a highly efficient simulation data generation pipeline as well as the superior model design, NavDP achieves real-time path-planning and obstacle avoidance across various navigation tasks, including nogoal exploration, pointgoal navigation, imagegoal navigation.
 <div style="text-align: center;">
-    <img src="asset_images/teasor_method.png" alt="Dialogue_Teaser" width=100% >
+    <img src="./assets/images/teasor_method.png" alt="Dialogue_Teaser" width=100% >
 </div>
 
 # 💻 InternVLA-N1 System-1 Model
@@ -59,7 +59,7 @@ Please follow the instructions to config the environment for NavDP.
 Step 0: Clone this repository
 ```bash
 git clone https://github.com/InternRobotics/NavDP
-cd NavDP/system1_baselines/navdp/
+cd NavDP/baselines/navdp/
 ```
 
 Step 1: Create conda environment and install the dependency
@@ -76,17 +76,17 @@ python navdp_server.py --port ${YOUR_PORT} --checkpoint ${SAVE_PTH_PATH}
 ```
 Then, follow the subsequent tutorial to build the environment for IsaacSim and start the evaluation in simulation. By running with our benchmark, you should be able to replicate the navigation examples below:
 #### NoGoal Exploration
-![scenes](./asset_images/demo_nogoal.gif)
+![scenes](./assets/images/demo_nogoal.gif)
 #### PointGoal Navigation
-![scenes](./asset_images/demo_pointgoal.gif)
+![scenes](./assets/images/demo_pointgoal.gif)
 #### ImageGoal Navigation
-![scenes](./asset_images/demo_imagegoal.gif)
+![scenes](./assets/images/demo_imagegoal.gif)
 # 🎢 InternVLA-N1 System-1 Benchmark 
 
 ### 🏠 Overview ##
 This repository is a high-fidelity platform for benchmarking the visual navigation methods based on [IsaacSim](https://developer.nvidia.com/isaac/sim) and [IsaacLab](https://isaac-sim.github.io/IsaacLab/main/index.html). With realistic physics simulation and realistic scene assets, this repository aims to build an benchmark that can minimizing the sim-to-real gap in navigation system-1 evaluation.
 
-![scenes](./asset_images/teasor_benchmark.png)
+![scenes](./assets/images/teasor_benchmark.png)
 
 ### Highlights ###
 - ⭐ Decoupled Framework between Navigation Approaches and Evaluation Process
@@ -118,10 +118,10 @@ Our benchmark supports multiple navigation tasks, including no-goal exploration,
 - [👏 Acknowledgements](#-acknowledgements)
 
 ### 🌆 Prepare Scene Asset ##
-Please download the scene asset from [InternScene-N1](https://huggingface.co/datasets/InternRobotics/Scene-N1/tree/main) at HuggingFace.
+Please download the scene asset from [InternScene-N1](https://huggingface.co/datasets/InternRobotics/Scene-N1/tree/main/n1_eval_scenes) at HuggingFace.
 The episodes information can be directly accessed in this repo. After downloading, please organize the structure as follows:
 ```bash
-asset_scenes/
+assets/scenes/
 ├── SkyTexture/
 │   ├── belfast_sunset_puresky_4k.hdr
 │   ├── citrus_orchard_road_puresky_4k.hdr
@@ -145,32 +145,39 @@ asset_scenes/
 │       └── pointgoal_start_goal_pairs.npy
 │   ├── ...
 ├── internscenes_commercial/
-│   └── MV4AFHQKTKJZ2AABAAAAADQ8_usd/
-│       ├── models/
-│       ├── Materials/
-│       ├── metadata.json
-│       ├── start_result_navigation.usd
-│       ├── imagegoal_start_goal_pairs.npy
-│       └── pointgoal_start_goal_pairs.npy
-│   ├── ...
+│   ├── models/
+│   ├── Materials/
+│   └── scenes_commercial/
+│       ├── MV4AFHQKTKJZ2AABAAAAADQ8_usd/
+│           ├── models/
+│           ├── Materials/
+│           ├── metadata.json
+│           ├── start_result_navigation.usd
+│           ├── imagegoal_start_goal_pairs.npy
+│           └── pointgoal_start_goal_pairs.npy
+│       ├── ...
 ├── internscene_home/
-│   └── MV4AFHQKTKJZ2AABAAAAADQ8_usd/
-│       ├── models/
-│       ├── Materials/
-│       ├── metadata.json
-│       ├── start_result_navigation.usd
-│       ├── imagegoal_start_goal_pairs.npy
-└──     └── pointgoal_start_goal_pairs.npy
+│   ├── models/
+│   ├── Materials/
+│   └── scenes_commercial/
+│       ├── MV4AFHQKTKJZ2AABAAAAADQ8_usd/
+│           ├── models/
+│           ├── Materials/
+│           ├── metadata.json
+│           ├── start_result_navigation.usd
+│           ├── imagegoal_start_goal_pairs.npy
+│           └── pointgoal_start_goal_pairs.npy
+│       ├── ...
 ```
 
 | Category | Download Asset | Episodes |
 |------|------|-------|
 | SkyTexture | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | - |
 | Materials  | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | - |
-| Cluttered-Easy | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | [Episodes](./asset_scenes/cluttered_easy/) |
-| Cluttered-Hard | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | [Episodes](./asset_scenes/cluttered_hard/) |
-| InternScenes-Home |  [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) |  [Episodes](./asset_scenes/internscenes_home/) |
-| InternScenes-Commercial | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | [Episodes](./asset_scenes/internscenes_commercial/) |
+| Cluttered-Easy | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | [Episodes](./assets/scenes/cluttered_easy/) |
+| Cluttered-Hard | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | [Episodes](./assets/scenes/cluttered_hard/) |
+| InternScenes-Home |  [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) |  [Episodes](./assets/scenes/internscenes_home/) |
+| InternScenes-Commercial | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | [Episodes](./assets/scenes/internscenes_commercial/) |
 
 **Note: The textures and dataset are still waiting for uploading to HuggingFace**
 ### 🔧 Installation of Benchmark ##
@@ -200,21 +207,14 @@ git checkout tags/v1.2.0
 After preparing for the dependencies, please clone our project to get started.
 
 ```bash
+# with the created environment following the previous steps
 git clone https://github.com/InternRobotics/NavDP.git
 cd NavDP
-git checkout navdp_benchmark
 pip install -r requirements.txt
 ```
 
 ### ⚙️ Installation of Baseline Library ##
 We collect the checkpoints for other navigation system-1 method from the corresponding respitory and organize their code to support the HTTP api calling for our benchmark. The links of paper, github codes as well as the pre-trained checkpoints are listed in the table below. Some of the baselines requires additional dependencies, and we provide the installation details below.
-```bash
-git clone https://github.com/InternRobotics/NavDP.git
-cd NavDP
-git checkout navdp_baseline
-# you can rename the branch directory as nav_system1_baseline
-mv ../NavDP ../nav_system1_baseline
-```
 
 | Baseline | Paper | Repo | Checkpoint | Support Tasks |
 |------|------|-------|---------|----------|
@@ -261,10 +261,11 @@ pip install git+https://github.com/real-stanford/diffusion_policy.git
 ```
 
 ### 💻 Running Basline as Server
-To install the dependencies for different baseline method, please refer to [here](). For each pre-built baseline methods, each contains a server.py file, just simply run server python script with parsing the server port as well as the checkpoint path. You can download the checkpoints from the [baseline library table](). Taking NavDP as an example:
+For each pre-built baseline methods, each contains a server.py file, just simply run server python script with parsing the server port as well as the checkpoint path. Taking NavDP as an example:
 ```bash
-cd nav_system1_baseline/navdp/
-python navdp_server.py --port 8888 --checkpoint ./checkpoints/navdp_checkpoint.ckpt
+# please first download the checkpoint from the above link
+cd baselines/navdp/
+python navdp_server.py --port 8888 --checkpoint ./checkpoints/navdp_checkpoint.ckpt 
 ```
 Then, the server will run at backend waiting for RGB-D observations and generate the preferred navigation trajectories.
 
@@ -283,15 +284,16 @@ Then, you can use 'w','a','s','d' on the keyboard to control the linear and angu
 ### 📊 Running Evaluation
 With a running server, it is simple to start the evaluation as:
 ```bash
-# if the running server support no-goal task, Please Parse the Absolute Path of the ASSET_SCENE
-python eval_nogoal_wheeled.py --port {PORT} --scene_dir {ASSET_SCENE} --scene_index {INDEX}
-# if the running server support point-goal task, Please Parse the Absolute Path of the ASSET_SCENE
-python eval_pointgoal_wheeled.py --port {PORT} --scene_dir {ASSET_SCENE} --scene_index {INDEX}
-# if the running server support image-goal task, Please Parse the Absolute Path of the ASSET_SCENE
-python eval_imagegoal_wheeled.py --port {PORT} --scene_dir {ASSET_SCENE} --scene_index {INDEX}
+# if the running server support no-goal task
+python eval_nogoal_wheeled.py --port {PORT} --scene_dir {ASSET_SCENE} --scene_index {INDEX} --scene_scale {SCALE}
+# if the running server support point-goal task
+python eval_pointgoal_wheeled.py --port {PORT} --scene_dir {ASSET_SCENE} --scene_index {INDEX} --scene_scale {SCALE}
+# if the running server support image-goal task
+python eval_imagegoal_wheeled.py --port {PORT} --scene_dir {ASSET_SCENE} --scene_index {INDEX} --scene_scale {SCALE}
 ```
-Please parse the port to match the server port, and the scene asset as well as the scene index to decide the evaluate scenario.
-The evaluation results of the baseline methods will be released in a few days.
+**Notes:** Please parse the port to match the server port, 
+and always parse the **absolute path** for the scene_dir. 
+For internscenes, please parse scene_scale as 0.01 and 1.0 for cluttered scenes.
 
 # 📄 License 
 The open-sourced code are under the <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License </a><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>.
