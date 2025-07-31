@@ -1,5 +1,0 @@
-matplotlib
-opencv-python
-open3d
-torch
-torchvision

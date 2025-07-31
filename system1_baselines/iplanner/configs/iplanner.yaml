@@ -1,7 +1,0 @@
-img_input_size:
-- 360
-- 640
-sensor_offset_x: 0
-sensor_offset_y: 0
-max_depth: 15.0
-max_goal_distance: 15.0
