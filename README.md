@@ -159,7 +159,7 @@ assets/scenes/
 ├── internscene_home/
 │   ├── models/
 │   ├── Materials/
-│   └── scenes_commercial/
+│   └── scenes_home/
 │       ├── MV4AFHQKTKJZ2AABAAAAADQ8_usd/
 │           ├── models/
 │           ├── Materials/
@@ -172,12 +172,12 @@ assets/scenes/
 
 | Category | Download Asset | Episodes |
 |------|------|-------|
-| SkyTexture | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | - |
-| Materials  | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | - |
-| Cluttered-Easy | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | [Episodes](./assets/scenes/cluttered_easy/) |
-| Cluttered-Hard | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | [Episodes](./assets/scenes/cluttered_hard/) |
-| InternScenes-Home |  [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) |  [Episodes](./assets/scenes/internscenes_home/) |
-| InternScenes-Commercial | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1) | [Episodes](./assets/scenes/internscenes_commercial/) |
+| SkyTexture | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1/blob/main/n1_eval_scenes/SkyTexture.tar.gz) | - |
+| Materials  | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1/blob/main/n1_eval_scenes/Materials.tar.gz) | - |
+| Cluttered-Easy | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1/blob/main/n1_eval_scenes/cluttered_easy.tar.gz) | [Episodes](./assets/scenes/cluttered_easy/) |
+| Cluttered-Hard | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1/blob/main/n1_eval_scenes/cluttered_hard.tar.gz) | [Episodes](./assets/scenes/cluttered_hard/) |
+| InternScenes-Home |  [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1/tree/main/n1_eval_scenes/internscenes_home) |  [Episodes](./assets/scenes/internscenes_home/) |
+| InternScenes-Commercial | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1/blob/main/n1_eval_scenes/internscenes_commercial.tar.gz) | [Episodes](./assets/scenes/internscenes_commercial/) |
 
 **Note: The textures and dataset are still waiting for uploading to HuggingFace**
 ### 🔧 Installation of Benchmark ##
