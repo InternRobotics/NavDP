@@ -6,7 +6,6 @@ import numpy as np
 import open3d as o3d
 import matplotlib.pyplot as plt
 from collections import deque
-
 from dataclasses import MISSING
 from typing import Literal
 from omni.isaac.lab.envs import ManagerBasedRLEnvCfg,ManagerBasedEnvCfg
@@ -32,7 +31,7 @@ import omni.isaac.lab_tasks.manager_based.locomotion.velocity.mdp as mdp
 import omni.isaac.lab.utils.math as math_utils
 from omni.isaac.lab.envs import ManagerBasedEnv
 from omni.isaac.lab.assets import Articulation, RigidObject
-from config_robots import *
+from configs.robots import *
 from .usd_utils import *
 
 reset_counter = 0

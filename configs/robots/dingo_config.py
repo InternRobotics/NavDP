@@ -7,7 +7,7 @@ from omni.isaac.lab.sensors import ContactSensorCfg, patterns, CameraCfg, RayCas
 DINGO_CFG = ArticulationCfg(
     prim_path = "{ENV_REGEX_NS}/Robot",
     spawn=sim_utils.UsdFileCfg(
-        usd_path="../assets/robots/dingo.usd",
+        usd_path="./assets/robots/dingo.usd",
         articulation_props=sim_utils.ArticulationRootPropertiesCfg(enabled_self_collisions=False),
         activate_contact_sensors=True,
         rigid_props=sim_utils.RigidBodyPropertiesCfg(
