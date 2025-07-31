@@ -179,7 +179,6 @@ assets/scenes/
 | InternScenes-Home |  [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1/tree/main/n1_eval_scenes/internscenes_home) |  [Episodes](./assets/scenes/internscenes_home/) |
 | InternScenes-Commercial | [Link](https://huggingface.co/datasets/InternRobotics/Scene-N1/blob/main/n1_eval_scenes/internscenes_commercial.tar.gz) | [Episodes](./assets/scenes/internscenes_commercial/) |
 
-**Note: The textures and dataset are still waiting for uploading to HuggingFace**
 ### 🔧 Installation of Benchmark ##
 Our framework is based on IsaacSim 4.2.0 and IsaacLab 1.2.0, you can follow the instructions to configure the conda environment.
 ```bash
