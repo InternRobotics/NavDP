@@ -1,0 +1,1 @@
+from .dingo_config import *
