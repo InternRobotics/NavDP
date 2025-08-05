@@ -27,6 +27,7 @@ import carb
 import numpy as np
 import imageio
 import os
+import cv2
 import csv
 import torch
 import open3d as o3d

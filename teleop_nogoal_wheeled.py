@@ -61,10 +61,9 @@ def planning_thread(env, camera_intrinsic):
         try:
             # Get latest observations from shared state
             with input_lock:
-                if planning_input.current_goal is None or planning_input.current_image is None or planning_input.current_depth is None or planning_input.camera_pos is None or planning_input.camera_rot is None:
+                if planning_input.current_image is None or planning_input.current_depth is None or planning_input.camera_pos is None or planning_input.camera_rot is None:
                     time.sleep(0.01)
                     continue
-                goal = planning_input.current_goal.copy()
                 image = planning_input.current_image.copy()
                 depth = planning_input.current_depth.copy()
                 camera_pos = planning_input.camera_pos.copy()
@@ -127,14 +126,17 @@ def main():
     scene_path = os.path.join(args_cli.scene_dir,os.listdir(args_cli.scene_dir)[args_cli.scene_index]) + "/"
     usd_path,init_path = find_usd_path(scene_path,task='pointgoal')
     # Setup environment
+    
     scene_config = ExplorationSceneCfg()
     scene_config.num_envs = 1
     scene_config.env_spacing = 0.0
     scene_config.terrain = BENCH_TERRAIN_CFG
+   
     scene_config.terrain.usd_path = usd_path
     scene_config.robot = DINGO_CFG
     scene_config.contact_sensor = DINGO_ContactCfg
     scene_config.camera_sensor = DINGO_CameraCfg
+    scene_config.metric_sensor = DINGO_MetricCameraCfg
     
     env_config = DingoExplorationCfg()
     env_config.actions = DingoActionsCfg()
@@ -161,8 +163,7 @@ def main():
     episode_num = 0
     trajectory_length = np.zeros((scene_config.num_envs))
     save_dir = "./teleop_nogoal_%s_%s/%s/"%(algo,args_cli.scene_dir.split("/")[-1],scene_path.split("/")[-2])
-    os.makedirs(save_dir, exist_ok=True)
-    euclidean = np.sqrt(np.square(infos['observations']['goal_pose'].cpu().numpy()[:,0:2]).sum(axis=-1))
+    os.makedirs(save_dir,exist_ok=True)
     fps_writer = [imageio.get_writer(save_dir + "fps_%d.mp4"%i, fps=10) for i in range(scene_config.num_envs)]
     
     # Initialize dones
@@ -205,7 +206,6 @@ def main():
     # Main simulation loop
     while simulation_app.is_running():
         # Move CUDA operations to CPU before sharing
-        goals = infos['observations']['goal_pose'].cpu().numpy()[:,0:2]
         images = infos['observations']['rgb'].cpu().numpy()[:,:,:,0:3]
         depths = infos['observations']['depth'].cpu().numpy()[:,:,:]
         # get all camera poses
@@ -216,7 +216,6 @@ def main():
         
         # Update shared state with latest observations
         with input_lock:
-            planning_input.current_goal = goals.copy()
             planning_input.current_image = images.copy()
             planning_input.current_depth = depths.copy()
             planning_input.camera_pos = camera_pos.copy()
@@ -291,7 +290,6 @@ def main():
             episode_num += 1
             navigator_reset(env_id=i,port=args_cli.port)
             fps_writer[i].close()
-            euclidean[i] = np.sqrt(np.square(infos['observations']['goal_pose'].cpu().numpy()[:,0:2]).sum(axis=-1))[i]
             fps_writer[i] = imageio.get_writer(save_dir + "fps_%d.mp4"%episode_num, fps=10)
             trajectory_length[i] = 0.0
         
@@ -300,7 +298,6 @@ def main():
                 episode_num += 1
                 navigator_reset(env_id=i,port=args_cli.port)
                 fps_writer[i].close()
-                euclidean[i] = np.sqrt(np.square(infos['observations']['goal_pose'].cpu().numpy()[:,0:2]).sum(axis=-1))[i]
                 fps_writer[i] = imageio.get_writer(save_dir + "fps_%d.mp4"%episode_num, fps=10)
                 trajectory_length[i] = 0.0
 

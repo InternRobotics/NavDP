@@ -41,7 +41,7 @@ from omni.isaac.lab.managers import SceneEntityCfg
 from omni.isaac.lab_tasks.utils.wrappers.rsl_rl import RslRlVecEnvWrapper
 from wheeled_robots.controllers.differential_controller import DifferentialController
 
-from utils_tasks.basic_utils import PlanningInput, PlanningOutput,find_usd_path,adjust_usd_scale
+from utils_tasks.basic_utils import PlanningInput, PlanningOutput,draw_box_with_text, find_usd_path,adjust_usd_scale
 from utils_tasks.client_utils import navigator_reset,pointgoal_step
 from configs.robots import *
 from configs.scenes import *
@@ -255,16 +255,19 @@ def main():
         # Create visualization
         if current_trajectory is not None:
             for i in range(scene_config.num_envs):
-                #try:
-                vis_image = vis_manager[i].visualize_trajectory(
-                    images[i], depths[i][:,:,None], camera_intrinsic.cpu().numpy(),
-                    current_trajectory[i],
-                    robot_pose=x0[i],
-                    all_trajectories_points=current_all_trajectories[i],
-                    all_trajectories_values=current_all_values[i]
-                )
-                cv2.imwrite(f"frame_test.png", cv2.cvtColor(vis_image, cv2.COLOR_RGB2BGR))
-                fps_writer[i].append_data(vis_image)
+                try:
+                    vis_image = vis_manager[i].visualize_trajectory(
+                        images[i], depths[i][:,:,None], camera_intrinsic.cpu().numpy(),
+                        current_trajectory[i],
+                        robot_pose=x0[i],
+                        all_trajectories_points=current_all_trajectories[i],
+                        all_trajectories_values=current_all_values[i]
+                    )
+                    vis_image = draw_box_with_text(vis_image,0,820,430,50,"point goal:(%.2f, %.2f)"%(goals[i][0],goals[i][1]))
+                    cv2.imwrite(f"frame_test.png", cv2.cvtColor(vis_image, cv2.COLOR_RGB2BGR))
+                    fps_writer[i].append_data(vis_image)
+                except:
+                    pass
             #except Exception as e:
             #    print(f"Visualization error: {e}")
         
