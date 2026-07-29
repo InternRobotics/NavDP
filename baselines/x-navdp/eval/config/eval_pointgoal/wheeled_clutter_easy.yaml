@@ -1,0 +1,51 @@
+run_id: pointgoal_wheeled_eval
+run_root_dir: outputs/evaluation
+logger: null
+
+environment:
+  embodiment: dingo
+  task_type: pointgoal
+  scene_dir: data/scenes/cluttered_easy
+  scene_index: 0
+  num_envs: 1
+  rgb_history_window: 1024
+  depth_history_window: 1
+  rgb_num_samples: 8
+  depth_num_samples: 1
+  rgb_image_size: 224
+  depth_image_size: 224
+  height_offset: 0.5
+  stuck_window_size: 50
+  stuck_threshold: 0.1
+  arrival_threshold: 1.0
+  grid_size: 0.5
+  scene_scale: 0.5
+  scale_factor: 1.0
+  action_scale: 1.0
+  eval_mode: True
+  device: cuda:0
+
+obs_mapping:
+  rgb: raw_rgb
+  depth: raw_depth
+  pointgoal: goal_pose
+  birdeye: birdeye_rgb
+  robot_pos: robot_pose
+  robot_quat: robot_rot
+
+controller:
+  type: differential
+  name: dingo_differential_controller
+  wheel_radius: 0.06125
+  wheel_base: 0.22616
+  max_linear_speed: 2.0
+  max_angular_speed: 2.0
+  max_wheel_speed: 1000.0
+
+mpc:
+  N: 30
+  desired_v: 0.5
+  v_max: 0.5
+  w_max: 0.5
+  ref_gap: 3
+  T: 0.1

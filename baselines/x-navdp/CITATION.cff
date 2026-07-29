@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the X-NavDP paper."
+title: "X-NavDP: Generalizing Navigation Diffusion Policy to Novel Behavior and Embodiments with Group Q-score Reweighted Matching"
+type: software
+authors:
+  - family-names: Yang
+    given-names: Tianyu
+  - family-names: Zeng
+    given-names: Yiming
+  - family-names: Cai
+    given-names: Wenzhe
+  - family-names: Yang
+    given-names: Yuqiang
+  - family-names: Peng
+    given-names: Jiaqi
+  - family-names: Cheng
+    given-names: Hui
+  - family-names: Pang
+    given-names: Jiangmiao
+  - family-names: Wang
+    given-names: Tai
+repository-code: "https://github.com/InternRobotics/NavDP/tree/master/baselines/x-navdp"
+license: MIT
+date-released: 2026-07-24

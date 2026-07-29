@@ -1,0 +1,51 @@
+run_id: default
+run_root_dir: outputs/evaluation
+logger: null
+
+environment:
+  embodiment: unitree_go2
+  task_type: pointgoal
+  scene_dir: data/scenes/cluttered_easy
+  scene_index: 0
+  num_envs: 4
+  rgb_history_window: 1024
+  depth_history_window: 1
+  rgb_num_samples: 8
+  depth_num_samples: 1
+  rgb_image_size: 224
+  depth_image_size: 224
+  height_offset: 0.2
+  stuck_window_size: 50
+  stuck_threshold: 0.1
+  arrival_threshold: 1.0
+  grid_size: 0.5
+  scene_scale: 0.5
+  scale_factor: 1.0
+  action_scale: 0.25
+  eval_mode: True
+  device: cuda:0
+
+controller:
+  type: unitree_go2
+  name: unitreego2_controller
+  policy_path: src/environment/controllers/checkpoints/quadruped_go2/policy.pt
+  control_dt: 0.02
+  max_linear_speed: 1.0
+  max_angular_speed: 1.0
+  clip_actions: 100.0
+
+obs_mapping:
+  rgb: raw_rgb
+  depth: raw_depth
+  pointgoal: goal_pose
+  birdeye: birdeye_rgb
+  robot_pos: robot_pose
+  robot_quat: robot_rot
+
+mpc:
+  N: 30  # Prediction horizon
+  desired_v: 0.5  # Desired velocity
+  v_max: 0.5  # Maximum velocity
+  w_max: 0.5  # Maximum angular velocity
+  ref_gap: 3  # Reference gap
+  T: 0.1  # Time step
