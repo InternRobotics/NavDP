@@ -87,6 +87,12 @@ The **X-NavDP assets** are available from [InternRobotics/X-NavDP](https://huggi
 
 After downloading, place or symlink the scene data, metadata, robot assets, and checkpoints in the following layout. The scene root can also be kept elsewhere and passed with `SCENE_DIR`.
 
+<table>
+<tr>
+<td width="52%" valign="top">
+
+**Scene data and navigation metadata**
+
 ```text
 x-navdp/
 +-- data/scenes/
@@ -110,7 +116,39 @@ x-navdp/
         +-- cluttered_hard/
 ```
 
-Training and evaluation expect `SCENE_DIR` to point to the scene root. The high-level policy checkpoint path is configured in `config/x-navdp_config.yaml` and should point to the pretrained NavDP checkpoint under `pretrain_model/`.
+</td>
+<td width="48%" valign="top">
+
+**Code, robot assets, and checkpoints**
+
+```text
+x-navdp/
++-- train.py
++-- config/
++-- scripts/
++-- src/
+|   +-- environment/
+|   |   +-- controllers/checkpoints/
+|   |       +-- humanoid_g1/policy.pt
+|   |       +-- quadruped_go2/policy.pt
+|   +-- x_navdp/
+|   +-- training/
+|   +-- utils/
++-- eval/
++-- data/robots/
+|   +-- dingo.usd
+|   +-- unitreeg1.usd
++-- pretrain_model/
+|   +-- navdp_pretrained.ckpt
++-- checkpoints/
+    +-- x-navdp_posttrain.ckpt
+```
+
+</td>
+</tr>
+</table>
+
+Training and evaluation expect `SCENE_DIR` to point to the scene root. The training config initializes from `pretrain_model/navdp_pretrained.ckpt`; evaluation examples use the released post-trained checkpoint under `checkpoints/`. Dingo and G1 load robot USDs from `data/robots/`, while Unitree Go2 uses the Isaac Lab asset path by default.
 
 ## Training
 
@@ -161,7 +199,7 @@ Start the policy server:
 
 ```bash
 bash eval/scripts/start_policy_server.sh \
-  --checkpoint pretrain_model/your_checkpoint.ckpt \
+  --checkpoint checkpoints/x-navdp_posttrain.ckpt \
   --embodiment quadruped
 ```
 
@@ -190,23 +228,8 @@ python eval/scripts/stat_eval_metrics.py outputs/evaluation/quadruped_commercial
 On the project benchmark, X-NavDP improves the overall simulation success rate from 61.20% to 84.28% and improves real-world hard-case success rate from 10% to 65%. The project page reports gains across wheeled Dingo, quadruped Unitree Go2, and humanoid Unitree G1 embodiments, with stronger recovery from dead ends, long-obstacle detours, and dense-environment navigation.
 
 <p align="center">
-  <img src="fig/results.jpg" width="90%">
+  <img src="fig/results.png" width="90%">
 </p>
-
-## Repository Structure
-
-```text
-x-navdp/
-+-- train.py                         # Distributed RL post-training entry
-+-- config/                          # Training configs
-+-- scripts/                         # Training and result-analysis utilities
-+-- src/
-|   +-- environment/                 # Isaac Lab environments, robots, scenes, and tasks
-|   +-- x_navdp/                     # Policy model, trainer, and replay buffer
-|   +-- training/                    # Training constants and worker utilities
-|   +-- utils/                       # Config, video, visualization, and MPC utilities
-+-- eval/                            # Policy server and evaluation client
-```
 
 ## Citation
 
