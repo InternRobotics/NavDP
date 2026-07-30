@@ -41,11 +41,22 @@
 
 ## Introduction
 
-X-NavDP post-trains a pretrained RGBD camera-based navigation diffusion policy via online reinforcement learning across heterogeneous embodiments. Beyond improving general navigation and obstacle avoidance performance, it gains new capabilities for backing out of traps, long-obstacle detours, and embodiment-aware behavior adaptation. We advance diffusion-policy navigation by:
+X-NavDP post-trains a pretrained RGBD camera-based navigation diffusion policy via online reinforcement learning across heterogeneous embodiments. Beyond improving general navigation and obstacle avoidance performance, it gains new capabilities for backing out of traps, long-obstacle detours, and embodiment-aware behavior adaptation. Our contributions to navigation diffusion policy are threefold:
 
-- &#9889; **Data-efficient RL post-training.** X-NavDP enhances pretrained diffusion policies through efficient large-scale, multi-scene online post-training for stronger general navigation ability.
-- &#9874; **Structured exploration and stable training.** Goal-agnostic diffusion trajectories and **Group Q-score Reweighted Matching** enable structured exploration, improve training stability, and handle hard cases.
-- &#8635; **Cross-robot generalization and temporal consistency.** Lightweight embodiment modulation and RTC guidance improve cross-robot generalization and temporal consistency, leading to superior post-trained navigation performance.
+<table>
+<tr>
+<td width="28" align="center">&#9889;</td>
+<td><strong>Data-efficient RL post-training.</strong> X-NavDP enhances pretrained diffusion policies through efficient large-scale, multi-scene online post-training for stronger general navigation ability.</td>
+</tr>
+<tr>
+<td width="28" align="center">&#9874;</td>
+<td><strong>Structured exploration and stable training.</strong> Goal-agnostic diffusion trajectories and <strong>Group Q-score Reweighted Matching</strong> enable structured exploration, improve training stability, and handle hard cases.</td>
+</tr>
+<tr>
+<td width="28" align="center">&#8635;</td>
+<td><strong>Cross-robot generalization and temporal consistency.</strong> Lightweight embodiment modulation and RTC guidance improve cross-robot generalization and temporal consistency, leading to superior post-trained navigation performance.</td>
+</tr>
+</table>
 
 <p align="center">
   <img src="fig/teaser.jpg" width="80%">
@@ -79,7 +90,7 @@ export OMNI_KIT_ALLOW_ROOT=1
 
 ## Assets
 
-Large assets, datasets, robot USDs, low-level controller checkpoints, and pretrained policy checkpoints are not included in this repository.
+Large assets, datasets, robot USDs, low-level controller checkpoints, and pretrained policy checkpoints are not included in this repository. You need to download these assets manually before running training or evaluation.
 
 The **GRScenes100 / N1 evaluation scenes** are available from [InternRobotics/Scene-N1](https://huggingface.co/datasets/InternRobotics/Scene-N1/tree/main/n1_eval_scenes). This dataset contains sky textures, materials, cluttered easy/hard scenes, InternScenes home scenes, and InternScenes commercial scenes.
 
@@ -225,11 +236,7 @@ python eval/scripts/stat_eval_metrics.py outputs/evaluation/quadruped_commercial
 
 ## Results
 
-On the project benchmark, X-NavDP improves the overall simulation success rate from 61.20% to 84.28% and improves real-world hard-case success rate from 10% to 65%. The project page reports gains across wheeled Dingo, quadruped Unitree Go2, and humanoid Unitree G1 embodiments, with stronger recovery from dead ends, long-obstacle detours, and dense-environment navigation.
-
-<p align="center">
-  <img src="fig/results.png" width="90%">
-</p>
+On the project benchmark, X-NavDP improves the overall simulation success rate from 61.20% to 84.28% and improves real-world hard-case success rate from 10% to 65%. See the [project results](https://yty-sky.github.io/x-navdp-project-page/#results) for simulation and real-world comparisons across wheeled Dingo, quadruped Unitree Go2, and humanoid Unitree G1 embodiments.
 
 ## Citation
 
