@@ -2,7 +2,7 @@
   <h1 align="center"><strong>X-NavDP</strong></h1>
   <h2 align="center">Generalizing Navigation Diffusion Policy to Novel Behavior and Embodiments with Group Q-score Reweighted Matching</h2>
   <p align="center">
-    <a href="/cpfs/user/yangtianyu/NavDP/baselines/x-navdp/outputs/evaluation/quadruped_commercial" target="_blank">Tianyu Yang</a><sup>1,2*</sup>&emsp;
+    <a href="https://yty-sky.github.io/" target="_blank">Tianyu Yang</a><sup>1,2*</sup>&emsp;
     <a href="https://jzengym.github.io/JZENGYM/" target="_blank">Yiming Zeng</a><sup>3,2*</sup>&emsp;
     <a href="https://wzcai99.github.io/" target="_blank">Wenzhe Cai</a><sup>2*</sup>&emsp;
     <a href="https://yuqiang-yang.github.io/" target="_blank">Yuqiang Yang</a><sup>2</sup>&emsp;
@@ -60,7 +60,7 @@ git clone https://github.com/InternRobotics/NavDP.git
 cd NavDP/baselines/x-navdp
 ```
 
-Create a Python environment and install the dependencies. The current remote setup has been verified with Python 3.11 in the `navrl` conda environment:
+Create a Python environment and install the dependencies:
 
 ```bash
 conda create -n navrl python=3.11
@@ -68,7 +68,7 @@ conda activate navrl
 pip install -r requirements.txt
 ```
 
-Install Isaac Sim and Isaac Lab following their official instructions, then install acados following the [acados installation guide](https://docs.acados.org/installation/index.html) and [Python interface guide](https://docs.acados.org/python_interface/index.html). The acados setup is lightweight and mainly requires a CMake build plus the Python interface. Before running training or evaluation, expose the acados libraries and accept the Omniverse EULA:
+Install [Isaac Sim 5.0.0](https://docs.isaacsim.omniverse.nvidia.com/5.0.0/installation/index.html), [Isaac Lab 0.46.2](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html), and `isaaclab-rl==0.4.0` following their official instructions. Then install acados following the [acados installation guide](https://docs.acados.org/installation/index.html) and [Python interface guide](https://docs.acados.org/python_interface/index.html). The acados setup is lightweight and mainly requires a CMake build plus the Python interface. Before running training or evaluation, expose the acados libraries and accept the Omniverse EULA:
 
 ```bash
 export ACADOS_SOURCE_DIR=/path/to/acados
@@ -94,59 +94,20 @@ x-navdp/
     +-- SkyTexture/
     +-- Materials/
     +-- cluttered_easy/
-    |   +-- easy_0/
-    |       +-- cluttered-0.usd
-    |       +-- imagegoal_start_goal_pairs.npy
-    |       +-- pointgoal_start_goal_pairs.npy
     +-- cluttered_hard/
-    |   +-- hard_0/
-    |       +-- cluttered-0.usd
-    |       +-- imagegoal_start_goal_pairs.npy
-    |       +-- pointgoal_start_goal_pairs.npy
     +-- internscenes_commercial/
     |   +-- models/
     |   +-- Materials/
     |   +-- scenes_commercial/
-    |       +-- <scene_name>/
-    |           +-- models/
-    |           +-- Materials/
-    |           +-- metadata.json
-    |           +-- start_result_navigation.usd
     +-- internscenes_home/
     |   +-- models/
     |   +-- Materials/
     |   +-- scenes_home/
-    |       +-- <scene_name>/
-    |           +-- models/
-    |           +-- Materials/
-    |           +-- metadata.json
-    |           +-- start_result_navigation.usd
     +-- navigation_metadata/
         +-- internscenes_commercial/
-        |   +-- esdf/<scene_name>/navigable.ply
-        |   +-- pointgoal_start_pair/<scene_name>/
-        |       +-- pointgoal_start_pair_samples_safe.npy  # train scenes
-        |       +-- pointgoal_start_goal_pairs.npy          # eval scenes
         +-- internscenes_home/
-        |   +-- esdf/<scene_name>/navigable.ply
-        |   +-- pointgoal_start_pair/<scene_name>/
-        |       +-- pointgoal_start_pair_samples_safe.npy  # train scenes
-        |       +-- pointgoal_start_goal_pairs.npy          # eval scenes
         +-- cluttered_easy/
-        |   +-- pointgoal_start_pair/<scene_name>/pointgoal_start_pair_samples_safe.npy
         +-- cluttered_hard/
-            +-- pointgoal_start_pair/<scene_name>/pointgoal_start_pair_samples_safe.npy
-```
-
-The `scene_split.json` file must use scene names that exactly match the directory names under `scenes_home/` and `scenes_commercial/`, including suffixes such as `_usd` when present:
-
-```json
-{
-  "home_train": ["MV7J6NIKTKJZ2AABAAAAADA8_usd"],
-  "home_eval": [],
-  "commercial_train": ["MV4AFHQKTKJZ2AABAAAAADY8_usd"],
-  "commercial_eval": []
-}
 ```
 
 Training and evaluation expect `SCENE_DIR` to point to the scene root. The high-level policy checkpoint path is configured in `config/x-navdp_config.yaml` and should point to the pretrained NavDP checkpoint under `pretrain_model/`.
@@ -227,6 +188,10 @@ python eval/scripts/stat_eval_metrics.py outputs/evaluation/quadruped_commercial
 ## Results
 
 On the project benchmark, X-NavDP improves the overall simulation success rate from 61.20% to 84.28% and improves real-world hard-case success rate from 10% to 65%. The project page reports gains across wheeled Dingo, quadruped Unitree Go2, and humanoid Unitree G1 embodiments, with stronger recovery from dead ends, long-obstacle detours, and dense-environment navigation.
+
+<p align="center">
+  <img src="fig/results.jpg" width="90%">
+</p>
 
 ## Repository Structure
 
