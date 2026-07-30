@@ -45,7 +45,7 @@ X-NavDP post-trains a pretrained RGBD camera-based navigation diffusion policy v
 
 - &#9889; **Data-efficient RL post-training.** X-NavDP enhances pretrained diffusion policies through efficient large-scale, multi-scene online post-training for stronger general navigation ability.
 - &#9874; **Structured exploration and stable training.** Goal-agnostic diffusion trajectories and **Group Q-score Reweighted Matching** enable structured exploration, improve training stability, and handle hard cases.
-- &#8635; **Cross-robot generalization and temporal consistency.** Lightweight embodiment modulation and RTC guidance improve cross-robot generalization and temporal consistency, leading to superior post-trained navigation performance.
+- &#129309; **Cross-robot generalization and temporal consistency.** Lightweight embodiment modulation and RTC guidance improve cross-robot generalization and temporal consistency, leading to superior post-trained navigation performance.
 
 <p align="center">
   <img src="fig/teaser.jpg" width="80%">
@@ -212,12 +212,7 @@ bash eval/scripts/run_evaluation.sh \
 
 By default, evaluation runs all start-goal samples in the selected scene. Use `--num_episodes` to evaluate a subset and `--max_steps` to cap the total simulation steps for smoke tests or debugging.
 
-Evaluation configs are provided under `eval/config/eval_pointgoal/`.
-Home/commercial configs expect the NavDP-style scene root under `data/scenes`, with navigation metadata under `data/scenes/navigation_metadata`.
-They use the `home_eval` and `commercial_eval` entries from `data/scenes/scene_split.json`.
-
-Evaluation outputs are written under `outputs/evaluation/<embodiment>_<scene_type>/`.
-Each scene directory contains a `metric.csv` file whose first two columns are success and SPL. To print per-USD scene SR and SPL, run:
+Evaluation configs are provided under `eval/config/eval_pointgoal/`, and outputs are written under `outputs/evaluation/<embodiment>_<scene_type>/`. Each scene directory contains a `metric.csv` file whose first two columns are success and SPL. To print per-USD scene SR and SPL, run:
 
 ```bash
 python eval/scripts/stat_eval_metrics.py outputs/evaluation/quadruped_commercial
