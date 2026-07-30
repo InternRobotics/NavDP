@@ -226,7 +226,7 @@ We collect the checkpoints for other navigation system-1 method from the corresp
 | NoMad | [Arxiv](https://arxiv.org/abs/2310.07896)   | [GitHub](https://github.com/robodhruv/visualnav-transformer) | [Checkpoint](https://drive.google.com/drive/folders/1a9yWR2iooXFAqjQHetz263--4_2FFggg?usp=sharing) | ImageNav, NoGoal |
 | NavDP | [Arxiv](https://arxiv.org/abs/2505.08712)  | [GitHub](https://github.com/OpenRobotLab/NavDP) | [Checkpoint](https://docs.google.com/forms/d/e/1FAIpQLSdl3RvajO5AohwWZL5C0yM-gkSqrNaLGp1OzN9oF24oNLfikw/viewform?usp=dialog) | PointNav, ImageNav, NoGoal |
 | LoGoPlanner | [Arxiv](https://arxiv.org/abs/2512.19629)  | [GitHub](https://github.com/InternRobotics/NavDP/tree/master/baselines/logoplanner) | [Checkpoint](https://huggingface.co/InternRobotics/LoGoPlanner) | PointNav |
-| X-NavDP | Coming soon | [GitHub](https://github.com/yty-sky/NavDP/blob/xnavdp/baselines/x-navdp/README.md) | [Checkpoint](https://huggingface.co/InternRobotics/X-NavDP/blob/main/x-navdp_posttrain.ckpt) | PointNav |
+| X-NavDP | Coming soon | [GitHub](https://github.com/InternRobotics/NavDP/tree/master/baselines/x-navdp) | [Checkpoint](https://huggingface.co/InternRobotics/X-NavDP/blob/main/x-navdp_posttrain.ckpt) | PointNav |
 
 
 #### DD-PPO
