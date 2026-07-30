@@ -1,0 +1,54 @@
+# Trainer hyperparameters used by GQRMTrainer.
+trainer:
+  learning_rate: 0.00002        # Adam learning rate for actor and critic optimizers.
+  total_iters: 10000            # Number of scheduler iterations for linear LR decay.
+  end_factor_lr_decay: 0.5      # Final LR multiplier used by LinearLR.
+  num_samples_value: 32         # Number of trajectory samples for value estimation; kept for compatibility.
+  grad_clip_norm: 2.0           # Gradient clipping norm; trainer currently clips actor/critic at 5.0 internally.
+  gradient_accumulate: 4        # Gradient accumulation setting kept for compatibility.
+  minibatch: 8                  # Minibatch size setting kept for compatibility.
+  depth_mask_prob: 0.0          # Probability of zeroing depth observations during training.
+
+# X-NavDP policy architecture and diffusion settings.
+policy:
+  image_size: 224               # RGB/depth input resolution.
+  memory_size: 8                # RGB-D backbone memory length.
+  predict_size: 24              # Number of trajectory/action steps predicted by the policy.
+  temporal_depth: 16            # Transformer decoder depth.
+  ft_denoise_step: 4            # Number of fine-tuned denoising steps from the config.
+  distinguish_embodiment: True  # Enable embodiment embedding/modulation for Dingo, G1, and Go2.
+  device: 'cuda:0'              # Default policy device; distributed training overrides this per rank.
+
+# Replay buffer configuration.
+buffer:
+  horizon_size: 250             # Per-env circular replay horizon.
+
+# MPC controller used to track generated trajectories.
+mpc:
+  N: 30                         # Base MPC prediction horizon.
+  desired_v: 0.5                # Nominal desired linear velocity.
+  v_max: 0.5                    # Maximum linear velocity.
+  w_max: 0.5                    # Maximum angular velocity.
+  v_min_high_curvature: 0.05    # Minimum velocity for high-curvature trajectories.
+  ref_gap: 3                    # Gap between reference trajectory points used by MPC.
+  T: 0.1                        # MPC control time step in seconds.
+
+# Training process settings.
+training:
+  checkpoint_interval: 20000    # Steps between checkpoints; train.py can override via CLI.
+  eval_interval: 3              # Evaluation interval setting kept for compatibility.
+
+# Reward post-processing settings.
+reward:
+  reward_clip_min: -10          # Minimum reward clipping value.
+  reward_clip_max: 10           # Maximum reward clipping value.
+
+# Embodiments rotated across distributed ranks unless --embodiments overrides them.
+embodiment: ['dingo', 'unitree_g1', 'unitree_go2']
+
+# Output paths and pretrained initialization.
+paths:
+  checkpoint_dir: './ckpt/'     # Directory for saved training checkpoints.
+  pretrained_model: './pretrain_model/navdp_pretrained.ckpt'  # Initial NavDP checkpoint.
+  log_dir: './logs/'            # TensorBoard and per-rank logs.
+  video_dir: './video/'         # Debug videos and trajectory visualizations.

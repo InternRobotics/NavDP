@@ -1,0 +1,241 @@
+<p align="center">
+  <h1 align="center"><strong>X-NavDP</strong></h1>
+  <h2 align="center">Generalizing Navigation Diffusion Policy to Novel Behavior and Embodiments with Group Q-score Reweighted Matching</h2>
+  <p align="center">
+    <a href="https://yty-sky.github.io/" target="_blank">Tianyu Yang</a><sup>1,2*</sup>&emsp;
+    <a href="https://jzengym.github.io/JZENGYM/" target="_blank">Yiming Zeng</a><sup>3,2*</sup>&emsp;
+    <a href="https://wzcai99.github.io/" target="_blank">Wenzhe Cai</a><sup>2*</sup>&emsp;
+    <a href="https://yuqiang-yang.github.io/" target="_blank">Yuqiang Yang</a><sup>2</sup>&emsp;
+    <a href="https://steinate.github.io/" target="_blank">Jiaqi Peng</a><sup>4,2</sup>&emsp;
+    <a href="https://scholar.google.com/citations?view_op=search_authors&mauthors=Hui+Cheng+Sun+Yat-sen+University&hl=en" target="_blank">Hui Cheng</a><sup>3</sup>&emsp;
+    <a href="https://oceanpang.github.io/" target="_blank">Jiangmiao Pang</a><sup>2</sup>&emsp;
+    <a href="https://tai-wang.github.io/" target="_blank">Tai Wang</a><sup>2&dagger;</sup>
+  </p>
+  <p align="center">
+    <sup>1</sup>Fudan University&emsp;
+    <sup>2</sup>Shanghai AI Laboratory&emsp;
+    <sup>3</sup>Sun Yat-sen University&emsp;
+    <sup>4</sup>Tsinghua University
+  </p>
+</p>
+
+<div id="top" align="center">
+
+[![Project](https://img.shields.io/badge/Project-9c403d?style=flat)](https://yty-sky.github.io/x-navdp-project-page/)
+[![arXiv](https://img.shields.io/badge/arXiv-coming%20soon-3b6291?style=flat)](https://yty-sky.github.io/x-navdp-project-page/#bibtex)
+[![Video](https://img.shields.io/badge/Video-c97937?style=flat)](https://yty-sky.github.io/x-navdp-project-page/#video)
+[![Benchmark](https://img.shields.io/badge/Benchmark-8A2BE2?style=flat)](../../README.md#-internvla-n1-system-1-benchmark)
+[![Dataset](https://img.shields.io/badge/Dataset-548B54?style=flat)](https://huggingface.co/datasets/InternRobotics/Scene-N1/tree/main/n1_eval_scenes)
+[![GitHub star chart](https://img.shields.io/github/stars/InternRobotics/NavDP?style=square)](https://github.com/InternRobotics/NavDP)
+
+</div>
+
+<p align="center">
+  <a href="#installation">Installation</a> |
+  <a href="#assets">Assets</a> |
+  <a href="#training">Training</a> |
+  <a href="#evaluation">Evaluation</a> |
+  <a href="#results">Results</a> |
+  <a href="#citation">Citation</a>
+</p>
+
+## Introduction
+
+X-NavDP post-trains a pretrained RGBD camera-based navigation diffusion policy via online reinforcement learning across heterogeneous embodiments. Beyond improving general navigation and obstacle avoidance performance, it gains new capabilities for backing out of traps, long-obstacle detours, and embodiment-aware behavior adaptation. Our contributions to navigation diffusion policy are threefold:
+
+- &#9889; **Data-efficient RL post-training.** X-NavDP enhances pretrained diffusion policies through efficient large-scale, multi-scene online post-training for stronger general navigation ability.
+- &#9874; **Structured exploration and stable training.** Goal-agnostic diffusion trajectories and **Group Q-score Reweighted Matching** enable structured exploration, improve training stability, and handle hard cases.
+- &#129309; **Cross-robot generalization and temporal consistency.** Lightweight embodiment modulation and RTC guidance improve cross-robot generalization and temporal consistency, leading to superior post-trained navigation performance.
+
+<p align="center">
+  <img src="fig/teaser.jpg" width="80%">
+</p>
+
+## Installation
+
+Clone NavDP and enter the self-contained X-NavDP baseline:
+
+```bash
+git clone https://github.com/InternRobotics/NavDP.git
+cd NavDP/baselines/x-navdp
+```
+
+Create a Python environment and install the dependencies:
+
+```bash
+conda create -n navrl python=3.11
+conda activate navrl
+pip install -r requirements.txt
+```
+
+Install [Isaac Sim 5.0.0](https://docs.isaacsim.omniverse.nvidia.com/5.0.0/installation/index.html), [Isaac Lab 0.46.2](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html), and `isaaclab-rl==0.4.0` following their official instructions. Then install acados following the [acados installation guide](https://docs.acados.org/installation/index.html) and [Python interface guide](https://docs.acados.org/python_interface/index.html). The acados setup is lightweight and mainly requires a CMake build plus the Python interface. Before running training or evaluation, expose the acados libraries and accept the Omniverse EULA:
+
+```bash
+export ACADOS_SOURCE_DIR=/path/to/acados
+export LD_LIBRARY_PATH="${ACADOS_SOURCE_DIR}/lib:${LD_LIBRARY_PATH:-}"
+export OMNI_KIT_ACCEPT_EULA=YES
+export OMNI_KIT_ALLOW_ROOT=1
+```
+
+## Assets
+
+Large assets, datasets, robot USDs, low-level controller checkpoints, and pretrained policy checkpoints are not included in this repository. You need to download these assets manually before running training or evaluation.
+
+The **GRScenes100 / N1 evaluation scenes** are available from [InternRobotics/Scene-N1](https://huggingface.co/datasets/InternRobotics/Scene-N1/tree/main/n1_eval_scenes). This dataset contains sky textures, materials, cluttered easy/hard scenes, InternScenes home scenes, and InternScenes commercial scenes.
+
+The **X-NavDP assets** are available from [InternRobotics/X-NavDP](https://huggingface.co/InternRobotics/X-NavDP/tree/main). This repository provides `navigation_metadata`, robot assets, low-level controller checkpoints, `scene_split.json`, the NavDP pretrained checkpoint, and the X-NavDP post-trained checkpoint.
+
+After downloading, place or symlink the scene data, metadata, robot assets, and checkpoints in the following layout. The scene root can also be kept elsewhere and passed with `SCENE_DIR`.
+
+<table>
+<tr>
+<td width="52%" valign="top">
+
+**Scene data and navigation metadata**
+
+```text
+x-navdp/
++-- data/scenes/
+    +-- scene_split.json
+    +-- SkyTexture/
+    +-- Materials/
+    +-- cluttered_easy/
+    +-- cluttered_hard/
+    +-- internscenes_commercial/
+    |   +-- models/
+    |   +-- Materials/
+    |   +-- scenes_commercial/
+    +-- internscenes_home/
+    |   +-- models/
+    |   +-- Materials/
+    |   +-- scenes_home/
+    +-- navigation_metadata/
+        +-- internscenes_commercial/
+        +-- internscenes_home/
+        +-- cluttered_easy/
+        +-- cluttered_hard/
+```
+
+</td>
+<td width="48%" valign="top">
+
+**Code, robot assets, and checkpoints**
+
+```text
+x-navdp/
++-- train.py
++-- config/
++-- scripts/
++-- src/
+|   +-- environment/
+|   |   +-- controllers/checkpoints/
+|   |       +-- humanoid_g1/policy.pt
+|   |       +-- quadruped_go2/policy.pt
+|   +-- x_navdp/
+|   +-- training/
+|   +-- utils/
++-- eval/
++-- data/robots/
+|   +-- dingo.usd
+|   +-- unitreeg1.usd
++-- pretrain_model/
+|   +-- navdp_pretrained.ckpt
++-- checkpoints/
+    +-- x-navdp_posttrain.ckpt
+```
+
+</td>
+</tr>
+</table>
+
+Training and evaluation expect `SCENE_DIR` to point to the scene root. The training config initializes from `pretrain_model/navdp_pretrained.ckpt`; evaluation examples use the released post-trained checkpoint under `checkpoints/`. Dingo and G1 load robot USDs from `data/robots/`, while Unitree Go2 uses the Isaac Lab asset path by default.
+
+## Training
+
+The released [post-trained model](https://huggingface.co/InternRobotics/X-NavDP/blob/main/x-navdp_posttrain.ckpt) was trained for 24,000 steps on 72 scenes, including 16 clutter scenes and 56 home/commercial scenes.
+
+Single-node 8-GPU distributed training can be launched with:
+
+```bash
+export SCENE_DIR=/path/to/NavDP/baselines/x-navdp/data/scenes
+export NPROC_PER_NODE=8
+
+bash scripts/run_ddp_train.sh \
+  --config_file config/x-navdp_config.yaml
+```
+
+For a smaller debug run, reduce the number of processes and environments:
+
+```bash
+export NPROC_PER_NODE=1
+
+bash scripts/run_ddp_train.sh \
+  --num_envs 1 \
+  --embodiments dingo \
+  --max_steps 100
+```
+
+Training writes periodic evaluation records to the directory passed through
+`--txt_dir`. Aggregate these logs into global, per-embodiment, and per-scene
+success-rate CSV files and plots with:
+
+```bash
+python scripts/aggregate_success.py ./txt/x-navdp
+```
+
+By default, outputs are written to `./result/<txt_subdir_name>/`; for the
+command above, the output directory is `./result/x-navdp/`.
+Each log row has the form
+`rank,step,episode,success,trainer_success_rate`. Home/commercial and clutter
+results are reported separately. Use `--output-dir` to override the result
+directory, or `--no-plots` to generate CSV files only; run
+`python scripts/aggregate_success.py --help` for EMA and milestone options.
+
+## Evaluation
+
+Evaluation uses a policy server and an Isaac Lab client.
+
+Start the policy server:
+
+```bash
+bash eval/scripts/start_policy_server.sh \
+  --checkpoint checkpoints/x-navdp_posttrain.ckpt \
+  --embodiment quadruped
+```
+
+Run point-goal evaluation:
+
+```bash
+bash eval/scripts/run_evaluation.sh \
+  --config_file eval/config/eval_pointgoal/quadruped_clutter_easy.yaml
+```
+
+By default, evaluation runs all start-goal samples in the selected scene. Use `--num_episodes` to evaluate a subset and `--max_steps` to cap the total simulation steps for smoke tests or debugging.
+
+Evaluation configs are provided under `eval/config/eval_pointgoal/`, and outputs are written under `outputs/evaluation/<embodiment>_<scene_type>/`. Each scene directory contains a `metric.csv` file whose first two columns are success and SPL. To print per-USD scene SR and SPL, run:
+
+```bash
+python eval/scripts/stat_eval_metrics.py outputs/evaluation/quadruped_commercial
+```
+
+## Results
+
+On the project benchmark, X-NavDP improves the overall simulation success rate from 61.20% to 84.28% and improves real-world hard-case success rate from 10% to 65%. See the [project results](https://yty-sky.github.io/x-navdp-project-page/#results) for simulation and real-world comparisons across wheeled Dingo, quadruped Unitree Go2, and humanoid Unitree G1 embodiments.
+
+## Citation
+
+```bibtex
+@misc{yang2026xnavdp,
+  title  = {X-NavDP: Generalizing Navigation Diffusion Policy to Novel Behavior and Embodiments with Group Q-score Reweighted Matching},
+  author = {Tianyu Yang and Yiming Zeng and Wenzhe Cai and Yuqiang Yang and Jiaqi Peng and Hui Cheng and Jiangmiao Pang and Tai Wang},
+  year   = {2026}
+}
+```
+
+## License
+
+Original X-NavDP code is released under the [MIT License](LICENSE). Vendored and external dependencies retain their upstream terms; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Acknowledgement
+
+This project builds on Isaac Sim, Isaac Lab, acados, and NavDP. X-NavDP is distributed as a self-contained baseline in the [InternRobotics/NavDP](https://github.com/InternRobotics/NavDP) repository.

@@ -1,0 +1,25 @@
+torch==2.7.0+cu128
+torchvision==0.22.0+cu128
+numpy==1.26.0
+scipy==1.11.2
+opencv-python==4.11.0.86
+matplotlib==3.8.4
+Pillow==11.2.1
+PyYAML==6.0.1
+imageio==2.37.0
+imageio-ffmpeg==0.6.0
+gymnasium==1.2.0
+diffusers==0.33.1
+open3d==0.19.0
+pathfinding==1.0.16
+tensorboard==2.19.0
+casadi==3.7.0
+acados-template==0.5.1
+flask==3.0.3
+requests==2.31.0
+
+# Isaac Sim / Isaac Lab - install separately per NVIDIA docs.
+# Verified versions:
+# isaacsim==5.0.0.0
+# isaaclab==0.46.2
+# isaaclab-rl==0.4.0

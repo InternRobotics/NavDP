@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Training outputs
+logs/
+video/
+txt/
+ckpt/
+outputs/
+vis_output/
+experiments/
+pretrain_model/*
+!pretrain_model/README.md
+smoke_*.log
+smoke_*_latest.log
+*.log
+*.mp4
+/txt/
+!third_party/LICENSES/*.txt
+
+# MPC / acados generated code
+.c_generated_code/
+.x-navdp/
+c_generated_code/
+
+# Large assets (download separately)
+dataset/*
+!dataset/scene_split.json
+data/GRScenes-100/
+data/robots/*.usd
+src/environment/controllers/checkpoints/**/*.pt
+*.ckpt
+*.pt
+*.pth
+*.tar.gz
+
+# IDE
+.idea/
+.vscode/
+
+# Isaac / sim caches
+*.usd.lock
+
+# Dataset information
+.dataset/
+data/scenes
+
+# Local debug artifacts
+old_train.py
+.tmp_*/
+.tmp_*.json
+grscene_*_stats.json
+grscene_usd_fast_candidates.json
+material_io_probe*.json
+
+# Paper assets included in the source release
+!fig/*.jpg

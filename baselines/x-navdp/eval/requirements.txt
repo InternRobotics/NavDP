@@ -1,0 +1,25 @@
+# NavDP Evaluation Module Dependencies
+
+# Core dependencies (also in main requirements.txt)
+torch>=2.1.0
+torchvision>=0.16.0
+numpy>=1.24.0
+scipy>=1.10.0
+opencv-python>=4.8.0
+matplotlib>=3.7.0
+Pillow>=10.0.0
+PyYAML>=6.0
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.9
+gymnasium>=0.29.0
+diffusers>=0.25.0
+open3d>=0.17.0
+requests>=2.31.0
+
+# Policy server dependencies
+flask>=3.0.0
+werkzeug>=3.0.0
+
+# Isaac Sim / Isaac Lab — install separately per NVIDIA docs
+# isaacsim
+# isaaclab

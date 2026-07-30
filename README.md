@@ -7,12 +7,12 @@
     <a href='https://yuqiang-yang.github.io/' target='_blank'>Yuqiang Yang</a>&emsp;
     <a href='https://github.com/command-z-z' target='_blank'>Yujian Zhang</a>&emsp;
     <a href='https://scholar.google.com.hk/citations?user=Wx8ChLcAAAAJ&hl=zh-CN' target='_blank'>Meng Wei</a>&emsp; <br>
-    <a href='https://hanqingwangai.github.io/' target='_blank'>Hanqing Wang</a>&emsp; 
+    <a href='https://hanqingwangai.github.io/' target='_blank'>Hanqing Wang</a>&emsp;
     <a href='https://yilunchen.com/about/' target='_blank'>Yilun Chen</a>&emsp;
     <a href='https://tai-wang.github.io/' target='_blank'>Tai Wang</a>&emsp;
 	<a href='https://oceanpang.github.io/' target='_blank'>Jiangmiao Pang</a>&emsp;
     <br>
-    Shanghai AI Laboratory&emsp; 
+    Shanghai AI Laboratory&emsp;
     Tsinghua University&emsp; <br>
     Zhejiang University&emsp;
     The University of Hong Kong&emsp;
@@ -38,13 +38,14 @@
 </div>
 
 # 🔥 News
+- We release the [X-NavDP](https://yty-sky.github.io/x-navdp-project-page/), an RL post-training framework for navigation diffusion policies across heterogeneous embodiments.
 - We have open-sourced the entire [deploy process](baselines/logoplanner/README.md) based on LeKiwi, from hardware setup to algorithm deployment. 😺 Welcome to use it!
-- We release the [LoGoPlanner](https://steinate.github.io/logoplanner.github.io/) - a localization-grounded, end-to-end navigation framework. 
+- We release the [LoGoPlanner](https://steinate.github.io/logoplanner.github.io/) - a localization-grounded, end-to-end navigation framework.
 - We release the [InternVLA-N1](https://internrobotics.github.io/internvla-n1.github.io/) - the first end-to-end navigation dual-system.
 - We release the [InternNav](https://github.com/InternRobotics/InternNav) - an all-in-one open-source toolbox for embodied naivgation.
 
 # 🏡 Introduction
-Navigation Diffusion Policy (NavDP) is an end-to-end mapless navigation model 
+Navigation Diffusion Policy (NavDP) is an end-to-end mapless navigation model
 that can achieves cross-embodiment generalization without any real-world robot data. By building a highly efficient simulation data generation pipeline as well as the superior model design, NavDP achieves real-time path-planning and obstacle avoidance across various navigation tasks, including nogoal exploration, pointgoal navigation, imagegoal navigation.
 <div style="text-align: center;">
     <img src="./assets/images/teasor_method.png" alt="Dialogue_Teaser" width=100% >
@@ -81,7 +82,7 @@ Then, follow the subsequent tutorial to build the environment for IsaacSim and s
 ![scenes](./assets/images/demo_pointgoal.gif)
 #### ImageGoal Navigation
 ![scenes](./assets/images/demo_imagegoal.gif)
-# 🎢 InternVLA-N1 System-1 Benchmark 
+# 🎢 InternVLA-N1 System-1 Benchmark
 
 ### 🏠 Overview ##
 This repository is a high-fidelity platform for benchmarking the visual navigation methods based on [IsaacSim](https://developer.nvidia.com/isaac/sim) and [IsaacLab](https://isaac-sim.github.io/IsaacLab/main/index.html). With realistic physics simulation and realistic scene assets, this repository aims to build an benchmark that can minimizing the sim-to-real gap in navigation system-1 evaluation.
@@ -107,7 +108,7 @@ Our benchmark supports multiple navigation tasks, including no-goal exploration,
 
 ### 📋 Table of Contents
 - [🏠 Overview](#-overview)
-- [🌆 Prepare Scene Asset](#-prepare-scene-asset) 
+- [🌆 Prepare Scene Asset](#-prepare-scene-asset)
 - [🔧 Installation of Benchmark](#-installation-of-benchmark)
 - [⚙️ Installation of Baseline Library](#️-installation-of-baseline-library)
 - [💻 Running Basline as Server](#-running-basline-as-server)
@@ -198,7 +199,7 @@ cd IsaacLab/
 git checkout tags/v1.2.0
 
 # ignore the rsl-rl unavailable error
-./isaaclab.sh -i 
+./isaaclab.sh -i
 
 # check the isaaclab installation
 ./isaaclab.sh -p source/standalone/tutorials/00_sim/create_empty.py
@@ -225,6 +226,7 @@ We collect the checkpoints for other navigation system-1 method from the corresp
 | NoMad | [Arxiv](https://arxiv.org/abs/2310.07896)   | [GitHub](https://github.com/robodhruv/visualnav-transformer) | [Checkpoint](https://drive.google.com/drive/folders/1a9yWR2iooXFAqjQHetz263--4_2FFggg?usp=sharing) | ImageNav, NoGoal |
 | NavDP | [Arxiv](https://arxiv.org/abs/2505.08712)  | [GitHub](https://github.com/OpenRobotLab/NavDP) | [Checkpoint](https://docs.google.com/forms/d/e/1FAIpQLSdl3RvajO5AohwWZL5C0yM-gkSqrNaLGp1OzN9oF24oNLfikw/viewform?usp=dialog) | PointNav, ImageNav, NoGoal |
 | LoGoPlanner | [Arxiv](https://arxiv.org/abs/2512.19629)  | [GitHub](https://github.com/InternRobotics/NavDP/tree/master/baselines/logoplanner) | [Checkpoint](https://huggingface.co/InternRobotics/LoGoPlanner) | PointNav |
+| X-NavDP | Coming soon | [GitHub](https://github.com/yty-sky/NavDP/blob/xnavdp/baselines/x-navdp/README.md) | [Checkpoint](https://huggingface.co/InternRobotics/X-NavDP/blob/main/x-navdp_posttrain.ckpt) | PointNav |
 
 
 #### DD-PPO
@@ -268,7 +270,7 @@ For each pre-built baseline methods, each contains a server.py file, just simply
 ```bash
 # please first download the checkpoint from the above link
 cd baselines/navdp/
-python navdp_server.py --port 8888 --checkpoint ./checkpoints/navdp_checkpoint.ckpt 
+python navdp_server.py --port 8888 --checkpoint ./checkpoints/navdp_checkpoint.ckpt
 ```
 Then, the server will run at backend waiting for RGB-D observations and generate the preferred navigation trajectories.
 
@@ -280,7 +282,7 @@ python teleop_nogoal_wheeled.py
 # if the running server support point-goal task
 python teleop_pointgoal_wheeled.py
 # if the running server support image-goal task
-python teleop_imagegoal_wheeled.py 
+python teleop_imagegoal_wheeled.py
 ```
 Then, you can use 'w','a','s','d' on the keyboard to control the linear and anguler speed.
 
@@ -296,11 +298,11 @@ python eval_imagegoal_wheeled.py --port {PORT} --scene_dir {ASSET_SCENE} --scene
 # if the running server support start-goal task(No odometry)
 python eval_startgoal_wheeled.py --port {PORT} --scene_dir {ASSET_SCENE} --scene_index {INDEX} --scene_scale {SCALE}
 ```
-**Notes:** Please parse the port to match the server port, 
-and always parse the **absolute path** for the scene_dir. 
+**Notes:** Please parse the port to match the server port,
+and always parse the **absolute path** for the scene_dir.
 For internscenes, please parse scene_scale as 0.01 and 1.0 for cluttered scenes.
 
-# 📄 License 
+# 📄 License
 The open-sourced code are under the <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License </a><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>.
 
 

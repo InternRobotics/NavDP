@@ -1,0 +1,54 @@
+run_id: pointgoal_humanoid_eval_commercial
+run_root_dir: outputs/evaluation
+logger: null
+
+environment:
+  embodiment: unitree_g1
+  task_type: pointgoal
+  scene_dir: data/scenes
+  dataset_dir: data/scenes/navigation_metadata/internscenes_commercial
+  scene_type: commercial
+  usd_variant: navigation
+  scene_index: 0
+  num_envs: 1
+  rgb_history_window: 1024
+  depth_history_window: 1
+  rgb_num_samples: 7
+  depth_num_samples: 1
+  rgb_image_size: 224
+  depth_image_size: 224
+  height_offset: 0.74
+  stuck_window_size: 50
+  stuck_threshold: 0.1
+  arrival_threshold: 1.0
+  grid_size: 0.5
+  scene_scale: 0.01
+  scale_factor: 1.0
+  action_scale: 0.5
+  eval_mode: True
+  device: cuda:0
+
+controller:
+  type: unitree_g1
+  name: unitreeg1_ctroller
+  policy_path: src/environment/controllers/checkpoints/humanoid_g1/policy.pt
+  control_dt: 0.02
+  max_linear_speed: 1.0
+  max_angular_speed: 1.0
+  clip_actions: 100.0
+
+obs_mapping:
+  rgb: raw_rgb
+  depth: raw_depth
+  pointgoal: goal_pose
+  birdeye: birdeye_rgb
+  robot_pos: robot_pose
+  robot_quat: robot_rot
+
+mpc:
+  N: 75  # Prediction horizon
+  desired_v: 0.5  # Desired velocity
+  v_max: 0.5  # Maximum velocity
+  w_max: 0.5  # Maximum angular velocity
+  ref_gap: 3  # Reference gap
+  T: 0.04  # Time step
