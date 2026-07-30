@@ -38,7 +38,7 @@
 </div>
 
 # 🔥 News
-- We release X-NavDP, an RL post-training framework that generalizes navigation diffusion policies to novel behaviors and embodiments through Group Q-score Reweighted Matching.
+- We release the [X-NavDP](https://yty-sky.github.io/x-navdp-project-page/), an RL post-training framework for navigation diffusion policies across heterogeneous embodiments.
 - We have open-sourced the entire [deploy process](baselines/logoplanner/README.md) based on LeKiwi, from hardware setup to algorithm deployment. 😺 Welcome to use it!
 - We release the [LoGoPlanner](https://steinate.github.io/logoplanner.github.io/) - a localization-grounded, end-to-end navigation framework.
 - We release the [InternVLA-N1](https://internrobotics.github.io/internvla-n1.github.io/) - the first end-to-end navigation dual-system.

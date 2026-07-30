@@ -43,20 +43,9 @@
 
 X-NavDP post-trains a pretrained RGBD camera-based navigation diffusion policy via online reinforcement learning across heterogeneous embodiments. Beyond improving general navigation and obstacle avoidance performance, it gains new capabilities for backing out of traps, long-obstacle detours, and embodiment-aware behavior adaptation. Our contributions to navigation diffusion policy are threefold:
 
-<table>
-<tr>
-<td width="28" align="center">&#9889;</td>
-<td><strong>Data-efficient RL post-training.</strong> X-NavDP enhances pretrained diffusion policies through efficient large-scale, multi-scene online post-training for stronger general navigation ability.</td>
-</tr>
-<tr>
-<td width="28" align="center">&#9874;</td>
-<td><strong>Structured exploration and stable training.</strong> Goal-agnostic diffusion trajectories and <strong>Group Q-score Reweighted Matching</strong> enable structured exploration, improve training stability, and handle hard cases.</td>
-</tr>
-<tr>
-<td width="28" align="center">&#8635;</td>
-<td><strong>Cross-robot generalization and temporal consistency.</strong> Lightweight embodiment modulation and RTC guidance improve cross-robot generalization and temporal consistency, leading to superior post-trained navigation performance.</td>
-</tr>
-</table>
+- &#9889; **Data-efficient RL post-training.** X-NavDP enhances pretrained diffusion policies through efficient large-scale, multi-scene online post-training for stronger general navigation ability.
+- &#9874; **Structured exploration and stable training.** Goal-agnostic diffusion trajectories and **Group Q-score Reweighted Matching** enable structured exploration, improve training stability, and handle hard cases.
+- &#8635; **Cross-robot generalization and temporal consistency.** Lightweight embodiment modulation and RTC guidance improve cross-robot generalization and temporal consistency, leading to superior post-trained navigation performance.
 
 <p align="center">
   <img src="fig/teaser.jpg" width="80%">
