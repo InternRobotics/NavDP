@@ -207,7 +207,7 @@ Run point-goal evaluation:
 
 ```bash
 bash eval/scripts/run_evaluation.sh \
-  --config_file eval/config/eval_pointgoal/quadruped_clutter_easy.yaml
+  --config_file eval/config/eval_pointgoal/quadruped_internscene_commercial.yaml
 ```
 
 By default, evaluation runs all start-goal samples in the selected scene. Use `--num_episodes` to evaluate a subset and `--max_steps` to cap the total simulation steps for smoke tests or debugging.

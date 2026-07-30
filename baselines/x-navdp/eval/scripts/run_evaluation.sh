@@ -45,7 +45,7 @@ done
 
 if [ -z "$CONFIG_FILE" ]; then
     echo "Error: --config_file is required"
-    echo "Usage: bash scripts/run_evaluation.sh --config_file eval/config/eval_pointgoal/quadruped_clutter_easy.yaml"
+    echo "Usage: bash scripts/run_evaluation.sh --config_file eval/config/eval_pointgoal/quadruped_internscene_commercial.yaml"
     exit 1
 fi
 
