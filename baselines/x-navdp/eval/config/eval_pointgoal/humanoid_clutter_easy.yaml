@@ -1,4 +1,4 @@
-run_id: default
+run_id: pointgoal_humanoid_eval_clutter_easy
 run_root_dir: outputs/evaluation
 logger: null
 
@@ -7,10 +7,10 @@ environment:
   task_type: pointgoal
   scene_dir: data/scenes/cluttered_easy
   scene_index: 0
-  num_envs: 4
+  num_envs: 1
   rgb_history_window: 1024
   depth_history_window: 1
-  rgb_num_samples: 8
+  rgb_num_samples: 7
   depth_num_samples: 1
   rgb_image_size: 224
   depth_image_size: 224
@@ -43,9 +43,9 @@ obs_mapping:
   robot_quat: robot_rot
 
 mpc:
-  N: 30  # Prediction horizon
+  N: 75  # Prediction horizon
   desired_v: 0.5  # Desired velocity
   v_max: 0.5  # Maximum velocity
   w_max: 0.5  # Maximum angular velocity
   ref_gap: 3  # Reference gap
-  T: 0.1  # Time step
+  T: 0.04  # Time step

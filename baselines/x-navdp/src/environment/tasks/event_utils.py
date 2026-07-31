@@ -320,9 +320,9 @@ def pointnav_reset_eval(env: ManagerBasedEnv,
     if global_occ_path is not None:
         global _occ_cache_path, _occ_cache_data
         if _occ_cache_path != global_occ_path:
-            _gs = 0.1 * scale * scale_factor
+            _gs = 0.1 * scale_factor
             occ_pcd = o3d.io.read_point_cloud(global_occ_path)
-            occ_point = np.array(occ_pcd.points) * scale * scale_factor
+            occ_point = np.array(occ_pcd.points) * scale_factor
             _occ_min, _occ_max = occ_point.min(axis=0), occ_point.max(axis=0)
             grid_dimension = np.ceil((_occ_max[0:2] - _occ_min[0:2]) / _gs).astype(int)
             decision_map = np.zeros(grid_dimension, dtype=np.int32)
@@ -363,7 +363,7 @@ def pointnav_reset_eval(env: ManagerBasedEnv,
     for i in range(env_ids.shape[0]):
         idx = int(count % sample_points.shape[0])
         start_goal_pair = sample_points[idx].copy()
-        start_goal_pair[:4] = start_goal_pair[:4] * scale
+        start_goal_pair[:4] = start_goal_pair[:4] * scale_factor
         start_points = np.array([start_goal_pair[0], start_goal_pair[1], 0])
         goal_points = np.array([start_goal_pair[2], start_goal_pair[3], 0])
 

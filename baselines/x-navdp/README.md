@@ -22,7 +22,7 @@
 <div id="top" align="center">
 
 [![Project](https://img.shields.io/badge/Project-9c403d?style=flat)](https://yty-sky.github.io/x-navdp-project-page/)
-[![arXiv](https://img.shields.io/badge/arXiv-coming%20soon-3b6291?style=flat)](https://yty-sky.github.io/x-navdp-project-page/#bibtex)
+[![arXiv](https://img.shields.io/badge/arXiv-2607.28560-3b6291?style=flat)](https://arxiv.org/abs/2607.28560)
 [![Video](https://img.shields.io/badge/Video-c97937?style=flat)](https://yty-sky.github.io/x-navdp-project-page/#video)
 [![Benchmark](https://img.shields.io/badge/Benchmark-8A2BE2?style=flat)](../../README.md#-internvla-n1-system-1-benchmark)
 [![Dataset](https://img.shields.io/badge/Dataset-548B54?style=flat)](https://huggingface.co/datasets/InternRobotics/Scene-N1/tree/main/n1_eval_scenes)
@@ -207,7 +207,7 @@ Run point-goal evaluation:
 
 ```bash
 bash eval/scripts/run_evaluation.sh \
-  --config_file eval/config/eval_pointgoal/quadruped_clutter_easy.yaml
+  --config_file eval/config/eval_pointgoal/quadruped_internscene_commercial.yaml
 ```
 
 By default, evaluation runs all start-goal samples in the selected scene. Use `--num_episodes` to evaluate a subset and `--max_steps` to cap the total simulation steps for smoke tests or debugging.
