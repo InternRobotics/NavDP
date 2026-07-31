@@ -22,7 +22,7 @@
 <div id="top" align="center">
 
 [![Project](https://img.shields.io/badge/Project-9c403d?style=flat)](https://yty-sky.github.io/x-navdp-project-page/)
-[![arXiv](https://img.shields.io/badge/arXiv-coming%20soon-3b6291?style=flat)](https://yty-sky.github.io/x-navdp-project-page/#bibtex)
+[![arXiv](https://img.shields.io/badge/arXiv-2607.28560-3b6291?style=flat)](https://arxiv.org/abs/2607.28560)
 [![Video](https://img.shields.io/badge/Video-c97937?style=flat)](https://yty-sky.github.io/x-navdp-project-page/#video)
 [![Benchmark](https://img.shields.io/badge/Benchmark-8A2BE2?style=flat)](../../README.md#-internvla-n1-system-1-benchmark)
 [![Dataset](https://img.shields.io/badge/Dataset-548B54?style=flat)](https://huggingface.co/datasets/InternRobotics/Scene-N1/tree/main/n1_eval_scenes)
