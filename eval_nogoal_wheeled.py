@@ -1,4 +1,5 @@
 import argparse
+import tensordict  # 提前加载，绕开 IsaacSim 进程内 C 扩展冲突（2026-08-07 修复）
 from omni.isaac.lab.app import AppLauncher
 
 parser = argparse.ArgumentParser(description="A script to run a car control simulation")
@@ -213,6 +214,7 @@ while simulation_app.is_running():
     with torch.inference_mode():
         images = infos['observations']['rgb'].cpu().numpy()[:,:,:,0:3]
         depths = infos['observations']['depth'].cpu().numpy()[:,:,:]
+        print(f"相机检测{images[0].mean():.2f}深度检测{depths[0].mean():.3f}")
      
         camera_pos = env.unwrapped.scene.sensors['camera_sensor'].data.pos_w.cpu().numpy()
         camera_rot_quat = env.unwrapped.scene.sensors['camera_sensor'].data.quat_w_world.cpu().numpy()
