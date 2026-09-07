@@ -20,7 +20,6 @@
   </p>
 </p>
 
-
 <div id="top" align="center">
 
 [![Project](https://img.shields.io/badge/Project-%239c403d?style=flat&logoColor=%23FA7F6F
@@ -38,6 +37,7 @@
 </div>
 
 # 🔥 News
+- [2026-09-04] X-NavDP is accepted by CoRL 2026!
 - We release [X-NavDP](https://yty-sky.github.io/x-navdp-project-page/) ([paper](https://arxiv.org/abs/2607.28560)), an RL post-training framework for navigation diffusion policies across heterogeneous embodiments.
 - We have open-sourced the entire [deploy process](baselines/logoplanner/README.md) based on LeKiwi, from hardware setup to algorithm deployment. 😺 Welcome to use it!
 - We release the [LoGoPlanner](https://steinate.github.io/logoplanner.github.io/) - a localization-grounded, end-to-end navigation framework.
