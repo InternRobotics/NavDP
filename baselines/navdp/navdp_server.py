@@ -42,12 +42,12 @@ def navdp_reset():
 
     if navdp_fps_writer is None:
         format_time = datetime.datetime.fromtimestamp(time.time())
-        format_time = format_time.strftime("%Y-%m-%d %H:%M:%S")
+        format_time = format_time.strftime("%Y-%m-%d %H-%M-%S")
         navdp_fps_writer = imageio.get_writer("{}_fps_pointgoal.mp4".format(format_time),fps=7)
     else:
         navdp_fps_writer.close()
         format_time = datetime.datetime.fromtimestamp(time.time())
-        format_time = format_time.strftime("%Y-%m-%d %H:%M:%S")
+        format_time = format_time.strftime("%Y-%m-%d %H-%M-%S")
         navdp_fps_writer = imageio.get_writer("{}_fps_pointgoal.mp4".format(format_time),fps=7)
     return jsonify({"algo":"navdp"})
 
